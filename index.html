@@ -3,264 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interior Design Portfolio</title>
+    <title>Curated Interiors | Editorial Portfolio</title>
     <style>
-        /* Base Styles & Typography */
+        /* Added 'Great Vibes' font for the signature */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Great+Vibes&family=Inter:wght@300;400;600&display=swap');
+        
         :root {
-            --primary-bg: #fafafa;
-            --text-main: #333333;
-            --text-light: #666666;
-            --accent-color: #2c2c2c;
-            --button-hover: #555555;
-            --form-border: #e0e0e0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.09);
+            --glass-blur: blur(28px);
+            --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+            
+            --text-main: #ffffff;
+            --text-light: #b0b0b0;
+            --accent: #fff; 
+            
+            --grid-gap: 30px;
+            --panel-radius: 4px;
         }
         
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+        html { background-color: #0c0c11; scroll-behavior: smooth; }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        h1, h2, h3 { font-weight: 300; margin-bottom: 20px; }
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(10, 10, 15, 0.4), rgba(10, 10, 15, 0.7)), url('https://i.imgur.com/dQpdqqO.png') center/cover no-repeat;
+            z-index: -2;
+        }
+        
+        h1, h2, .editorial-header { font-family: 'DM Serif Display', serif; font-weight: 400; margin-bottom: 20px; }
+        h3, h4 { font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
         a { text-decoration: none; }
 
-        /* Top Navigation & Language Switch */
-        .top-nav {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            padding: 25px 40px;
-            display: flex; justify-content: flex-end;
-            box-sizing: border-box; z-index: 10;
+        .top-nav { position: fixed; top: 20px; right: 20px; z-index: 100; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 4px; box-shadow: var(--glass-shadow); }
+        .lang-switch { font-size: 12px; font-weight: 600; letter-spacing: 1.5px;}
+        .lang-switch a { color: var(--text-light); margin: 0 6px; cursor: pointer; transition: 0.3s; }
+        .lang-switch a:hover, .lang-switch a.active { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
+        .lang-switch span { display: none; }
+
+        .btn { display: inline-block; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 14px 30px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 2px;}
+        .btn:hover { background-color: var(--accent); color: #000; transform: translateY(-1px);}
+
+        .glass-panel {
+            background: var(--glass-bg); 
+            backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); 
+            border: 1px solid var(--glass-border); 
+            border-radius: var(--panel-radius); 
+            box-shadow: var(--glass-shadow);
+            padding: 50px;
+            box-sizing: border-box;
         }
 
-        .lang-switch {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(5px);
-            padding: 8px 16px; border-radius: 30px;
-            font-size: 13px; letter-spacing: 1px; font-weight: bold;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
 
-        .lang-switch a {
-            color: var(--text-light); margin: 0 6px;
-            transition: color 0.3s ease; cursor: pointer;
-        }
+        .hero { height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .hero-title-box { grid-column: 1 / span 1; text-align: left; max-width: 650px; padding-right: 50px;}
+        .hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1; margin-bottom: 25px; letter-spacing: -2px; }
+        .hero p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 35px; max-width: 85%; }
 
-        .lang-switch a:hover, .lang-switch a.active { color: var(--accent-color); }
-        .lang-switch a.active { border-bottom: 2px solid var(--accent-color); padding-bottom: 2px; }
-        .lang-switch span { color: #ccc; }
+        .page-segment { padding: 100px 0; }
+        .philosophy { text-align: left; display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--grid-gap); align-items: center;}
+        .philosophy-text h2 { font-size: 3rem; margin-top: 0; }
+        .philosophy-text p { font-size: 1.1rem; color: var(--text-light); line-height: 1.7; }
+        .philosophy-image img { width: 100%; height: 500px; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
 
-        /* Buttons */
-        .btn {
-            display: inline-block; background-color: var(--accent-color);
-            color: #ffffff; padding: 14px 32px; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
-            border: none; cursor: pointer; transition: background 0.3s ease;
-        }
-
-        .btn:hover { background-color: var(--button-hover); }
-
-        /* Hero Section */
-        .hero {
-            position: relative; height: 80vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.imgur.com/dQpdqqO.png') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; padding: 0 20px;
-        }
-
-        .hero-content { max-width: 800px; margin-top: 40px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
-
-        /* Container for sections */
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-
-        /* Philosophy Section */
-        .philosophy { text-align: center; max-width: 800px; margin: 0 auto; }
-        .philosophy h2 { font-size: 2rem; }
-        .philosophy p { font-size: 1.1rem; color: var(--text-light); }
-
-        /* Services Section (3 Columns) */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-        .service-card { text-align: center; }
-        .service-card img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 20px; }
-        .service-card h3 { font-size: 1.5rem; }
-        .service-card p { color: var(--text-light); }
-
-        /* About Section */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; background-color: #ffffff; padding: 60px; margin-top: 80px; }
-        .about-image img { width: 100%; height: auto; object-fit: cover; }
-        .about-text h2 { font-size: 2rem; }
-
-        /* Footer & Contact Form */
-        .footer-cta { background-color: #e9ecef; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; }
-        .footer-cta-content { text-align: center; max-width: 600px; width: 100%; }
-        .footer-cta h2 { font-size: 2.2rem; }
+        .services-section { padding-top: 40px; }
+        .services-header { text-align: center; margin-bottom: 60px; }
+        .services-header h2 { font-size: 3rem; margin-bottom: 15px; }
+        .services-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
         
-        .contact-form { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: left; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        
-        .contact-form input, .contact-form select, .contact-form textarea {
-            width: 100%; padding: 14px; border: 1px solid var(--form-border);
-            border-radius: 0; background-color: #ffffff; font-family: inherit;
-            font-size: 15px; color: var(--text-main); box-sizing: border-box; transition: border-color 0.3s ease;
-        }
-        
-        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent-color); }
-        .contact-form textarea { min-height: 140px; resize: vertical; }
-        .contact-form .btn { width: 100%; margin-top: 10px; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--grid-gap); margin-bottom: 80px; }
+        .service-card { border-radius: var(--panel-radius); border: 1px solid var(--glass-border); overflow: hidden; display: flex; flex-direction: column; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); box-shadow: var(--glass-shadow); transition: transform 0.3s ease, border-color 0.3s ease; }
+        .service-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); }
+        .service-card img { width: 100%; height: 260px; object-fit: cover; border-bottom: 1px solid var(--glass-border); }
+        .service-card-text { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .service-card-text h3 { margin-top: 0; margin-bottom: 15px; font-family: 'DM Serif Display', serif; font-size: 1.6rem; text-transform: none; letter-spacing: 0;}
+        .service-card-text p { margin: 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .about-grid { grid-template-columns: 1fr; padding: 30px 0; }
-            .form-row { grid-template-columns: 1fr; }
-            .top-nav { padding: 20px; }
+        .about-combination { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grid-gap); align-items: stretch; margin-top: 40px;}
+        .about-image img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
+        .about-text { justify-content: center; display: flex; flex-direction: column; align-items: flex-start; }
+        .about-text h2 { font-size: 3rem; margin-top: 0; }
+        .about-text .btn { margin-top: 15px; }
+        
+        /* Signature styling */
+        .designer-signature { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: 3rem; 
+            color: var(--accent); 
+            margin-top: 30px; 
+            opacity: 0.9;
+        }
+
+        .final-call { max-width: 900px; margin: 120px auto 60px; text-align: center; }
+        .final-call h2 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
+        .final-call p { color: var(--text-light); margin-bottom: 60px; font-size: 1.15rem; }
+        
+        .contact-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 18px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); border-radius: 4px; font-family: inherit; font-size: 15px; color: #fff; box-sizing: border-box; transition: 0.3s; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);}
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: rgba(255,255,255,0.4); background: rgba(0,0,0,0.5); }
+        .contact-form select { background-color: rgba(15,15,15,0.95); }
+        .contact-form select option { background: #111; color: #fff; }
+        .contact-form textarea { min-height: 150px; resize: none; }
+        .contact-form .btn { width: 100%; margin-top: 10px; padding: 20px; border-radius: 4px; font-size: 13px; font-weight: 700; background-color: #fff; color: #000; border: none;}
+        .contact-form .btn:hover { background-color: #eee; }
+
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; padding-top: 100px;}
+            .hero-title-box { padding-right: 0; max-width: 100%;}
+            .philosophy, .services-grid, .about-combination, .form-row { grid-template-columns: 1fr !important; }
+            .philosophy-image img { height: 400px; }
+            .about-image img { height: 400px; }
+            .final-call h2 { font-size: 3rem; }
+            .hero h1 { font-size: 3.5rem; }
+        }
+        @media (max-width: 768px) { 
+            .top-nav { display: none; }
+            .glass-panel { padding: 30px; }
+            .philosophy-text h2, .services-header h2, .about-text h2 { font-size: 2.2rem; }
+            .final-call h2 { font-size: 2.5rem; }
+            .designer-signature { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Top Navigation & Language Switch -->
     <nav class="top-nav">
         <div class="lang-switch">
-            <a onclick="setLanguage('en')" id="btn-en" class="active">EN</a> <span>|</span> <a onclick="setLanguage('pl')" id="btn-pl">PL</a>
+            <a onclick="setLanguage('en')" id="btn-en" class="active">EN</a><a onclick="setLanguage('pl')" id="btn-pl">PL</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="translatable" data-en="Beautiful, Livable Spaces Designed Just for You." data-pl="Piękne, funkcjonalne przestrzenie zaprojektowane specjalnie dla Ciebie.">Beautiful, Livable Spaces Designed Just for You.</h1>
-            <p class="translatable" data-en="Modern, thoughtful interior design for homes across Poland. We collaborate to turn your vision into a highly functional, everyday sanctuary." data-pl="Nowoczesne, przemyślane projekty wnętrz na terenie całej Polski. Współpracujemy, aby zamienić Twoją wizję w wysoce funkcjonalną, codzienną oazę.">Modern, thoughtful interior design for homes across Poland. We collaborate to turn your vision into a highly functional, everyday sanctuary.</p>
-            <a href="#contact" class="btn translatable" data-en="Inquire About a Project" data-pl="Zapytaj o projekt">Inquire About a Project</a>
-        </div>
-    </header>
-
     <div class="container">
-        <!-- Philosophy Section -->
-        <section class="philosophy">
-            <h2 class="translatable" data-en="Designing for Real Life" data-pl="Projektowanie z myślą o życiu">Designing for Real Life</h2>
-            <p class="translatable" data-en="I believe that a well-designed home shouldn't just look stunning in photos—it should feel entirely effortless to live in. My approach is rooted in understanding how you move through your day. By working directly with you one-on-one, I ensure no detail gets lost in translation, resulting in a space that perfectly balances aesthetics with practical, everyday comfort." data-pl="Wierzę, że dobrze zaprojektowany dom nie powinien tylko pięknie wyglądać na zdjęciach – powinien być przede wszystkim wygodny w codziennym życiu. Moje podejście opiera się na zrozumieniu tego, jak funkcjonujesz na co dzień. Pracując z Tobą indywidualnie, upewniam się, że żaden detal nie zostanie pominięty, co pozwala stworzyć przestrzeń idealnie łączącą estetykę z praktycznym komfortem.">I believe that a well-designed home shouldn't just look stunning in photos—it should feel entirely effortless to live in. My approach is rooted in understanding how you move through your day. By working directly with you one-on-one, I ensure no detail gets lost in translation, resulting in a space that perfectly balances aesthetics with practical, everyday comfort.</p>
-        </section>
+        <header class="hero">
+            <div class="hero-title-box">
+                <h1 class="translatable" data-en="Uncompromising Scale. Private Luxury." data-pl="Bezkompromisowa skala. Prywatny luksus.">Uncompromising Scale. Private Luxury.</h1>
+                <p class="translatable" data-en="Elevating private residences with an exacting standard of luxury. We curate bespoke interior environments for individuals who demand the extraordinary." data-pl="Podnosimy standard prywatnych rezydencji do poziomu absolutnego luksusu. Tworzymy wysoce spersonalizowane wnętrza dla klientów, którzy oczekują tego, co niezwykłe.">Elevating private residences with an exacting standard of luxury. We curate bespoke interior environments for individuals who demand the extraordinary.</p>
+                <a href="#contact" class="btn translatable" data-en="Initiate a Project" data-pl="Rozpocznij projekt">Initiate a Project</a>
+            </div>
+        </header>
 
-        <!-- Services Section -->
-        <section class="services-grid">
-            <div class="service-card">
-                <img src="https://i.imgur.com/GXz9JkO.png" alt="Full Service Design">
-                <h3 class="translatable" data-en="Full-Service Interior Design" data-pl="Kompleksowe projektowanie wnętrz">Full-Service Interior Design</h3>
-                <p class="translatable" data-en="From the initial spatial planning and 3D renders to the final finishing touches, I manage the design process from start to finish." data-pl="Od początkowego planowania przestrzennego i wizualizacji 3D, po końcowe detale wykończeniowe – zarządzam procesem od początku do końca.">From the initial spatial planning and 3D renders to the final finishing touches, I manage the design process from start to finish.</p>
-            </div>
-            <div class="service-card">
-                <img src="https://i.imgur.com/xQ6LBN6.png" alt="Concept Planning">
-                <h3 class="translatable" data-en="Concept & Layout Planning" data-pl="Koncepcja i układ funkcjonalny">Concept & Layout Planning</h3>
-                <p class="translatable" data-en="Perfect if you need a strong creative direction, mood boards, and functional floor plans to execute on your own." data-pl="Idealne, jeśli potrzebujesz silnego kierunku kreatywnego, moodboardów i funkcjonalnych rzutów do samodzielnej realizacji.">Perfect if you need a strong creative direction, mood boards, and functional floor plans to execute on your own.</p>
-            </div>
-            <div class="service-card">
-                <img src="https://i.imgur.com/DrDOIl4.png" alt="Consultations">
-                <h3 class="translatable" data-en="Design Consultations" data-pl="Konsultacje projektowe">Design Consultations</h3>
-                <p class="translatable" data-en="A dedicated session to solve specific layout dilemmas, choose color palettes, or refresh a single room." data-pl="Dedykowana sesja mająca na celu rozwiązanie konkretnych dylematów, wybór palety kolorów lub odświeżenie jednego pokoju.">A dedicated session to solve specific layout dilemmas, choose color palettes, or refresh a single room.</p>
+        <section class="page-segment">
+            <div class="glass-panel philosophy">
+                <div class="philosophy-text">
+                    <h2 class="translatable" data-en="The Art of Refined Living" data-pl="Sztuka wyrafinowanego życia">The Art of Refined Living</h2>
+                    <p class="translatable" data-en="Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. I bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking." data-pl="Projektowanie najbardziej luksusowych statków wycieczkowych na świecie uczy rzadkiej dyscypliny. Wymaga mistrzowskiego opanowania równowagi między bogatą estetyką, rygorystyczną optymalizacją przestrzeni i zaawansowanymi materiałami. Przenoszę tę precyzję do prestiżowych rezydencji, dbając o to, by Twoje wnętrza były równie bezbłędnie funkcjonalne, co zachwycające.">Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. I bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking.</p>
+                </div>
+                <div class="philosophy-image">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Luxury Materials Close-up">
+                </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section class="about-grid">
+        <section class="services-section">
+            <div class="services-header">
+                <h2 class="translatable" data-en="Bespoke Commissions" data-pl="Zlecenia indywidualne">Bespoke Commissions</h2>
+                <p class="translatable" data-en="I accept a select number of private residential commissions per year, ensuring absolute dedication to realizing your unique vision." data-pl="Przyjmuję wyselekcjonowaną liczbę prywatnych zleceń mieszkaniowych rocznie, zapewniając absolutne zaangażowanie w realizację Twojej unikalnej wizji.">I accept a select number of private residential commissions per year, ensuring absolute dedication to realizing your unique vision.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://i.imgur.com/GXz9JkO.png" alt="Full Package Design">
+                    <div class="service-card-text">
+                        <h3 class="translatable" data-en="Full Package Design" data-pl="Kompleksowy projekt wnętrz">Full Package Design</h3>
+                        <p class="translatable" data-en="From the initial concept to comprehensive technical drawings and precise material specifications. I manage every design detail." data-pl="Od początkowej koncepcji po kompleksowe rysunki techniczne i precyzyjne specyfikacje materiałowe. Zarządzam każdym detalem projektu.">From the initial concept to comprehensive technical drawings and precise material specifications. I manage every design detail.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://i.imgur.com/xQ6LBN6.png" alt="Conceptual Design">
+                    <div class="service-card-text">
+                        <h3 class="translatable" data-en="Conceptual Design" data-pl="Projekt koncepcyjny">Conceptual Design</h3>
+                        <p class="translatable" data-en="Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project." data-pl="Skupiony na aranżacji przestrzeni, doborze materiałów i ogólnej koncepcji projektowej, aby nadać silny kierunek kreatywny Twojemu projektowi.">Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://i.imgur.com/DrDOIl4.png" alt="Design Consultations">
+                    <div class="service-card-text">
+                        <h3 class="translatable" data-en="Design Consultations" data-pl="Konsultacje projektowe">Design Consultations</h3>
+                        <p class="translatable" data-en="Dedicated meetings designed to help create a clear design direction or solve specific spatial and aesthetic problems in your project." data-pl="Dedykowane spotkania, które pomagają wyznaczyć jasny kierunek projektowy lub rozwiązać konkretne problemy przestrzenne i estetyczne w Twoim projekcie.">Dedicated meetings designed to help create a clear design direction or solve specific spatial and aesthetic problems in your project.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-combination">
             <div class="about-image">
-                <img src="https://i.imgur.com/jpqDx8e.jpeg" alt="About the Designer">
+                <img src="https://i.imgur.com/jpqDx8e.jpeg" alt="The Designer">
             </div>
-            <div class="about-text">
-                <h2 class="translatable" data-en="Hi, I'm the Designer" data-pl="Cześć, tu Twój projektant">Hi, I'm the Designer</h2>
-                <p class="translatable" data-en="As an independent designer, I take pride in offering a tailored, deeply personal experience to every client. Whether we are maximizing a compact city apartment or rethinking a family home, I handle the heavy lifting of sourcing, planning, and problem-solving so you can actually enjoy the transformation of your space." data-pl="Jako niezależny projektant, z dumą oferuję każdemu klientowi dopasowane, wysoce spersonalizowane podejście. Niezależnie od tego, czy maksymalizujemy małe mieszkanie w mieście, czy na nowo urządzamy dom rodzinny, biorę na siebie ciężar poszukiwań, planowania i rozwiązywania problemów, abyś Ty mógł po prostu cieszyć się metamorfozą.">As an independent designer, I take pride in offering a tailored, deeply personal experience to every client. Whether we are maximizing a compact city apartment or rethinking a family home, I handle the heavy lifting of sourcing, planning, and problem-solving so you can actually enjoy the transformation of your space.</p>
-                <br>
-                <a href="#portfolio" class="btn translatable" data-en="View My Portfolio" data-pl="Zobacz moje portfolio">View My Portfolio</a>
+            <div class="glass-panel about-text">
+                <h2 class="translatable" data-en="Mastery of Scale & Detail" data-pl="Mistrzostwo skali i detalu">Mastery of Scale & Detail</h2>
+                <p class="translatable" data-en="With years of experience spanning both ultra-luxury maritime and high-end residential interior design, I bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, I engineer environments of profound elegance. Whether on land or at sea, I manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space." data-pl="Dzięki wieloletniemu doświadczeniu, obejmującemu zarówno ultra-luksusowe projekty morskie, jak i prestiżowe wnętrza mieszkalne, wnoszę do każdego projektu to, co najlepsze z obu tych światów. Projektowanie dla mega-wycieczkowców zaszczepiło we mnie rzadką dyscyplinę – mistrzowskie opanowanie balansu między bogatą estetyką, rygorystyczną optymalizacją przestrzeni a zaawansowanymi materiałami. Łącząc tę techniczną precyzję z ciepłem i osobistym podejściem typowym dla projektów mieszkaniowych, tworzę przestrzenie o bezkompromisowej elegancji. Zdejmuję z Ciebie cały ciężar procesu, pozwalając Ci po prostu cieszyć się płynną metamorfozą Twojego wnętrza.">With years of experience spanning both ultra-luxury maritime and high-end residential interior design, I bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, I engineer environments of profound elegance. Whether on land or at sea, I manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space.</p>
+                <a href="#contact" class="btn translatable" data-en="Let's connect" data-pl="Skontaktujmy się">Let's connect</a>
+                
+                <div class="designer-signature">A. Designer</div>
+                
             </div>
         </section>
+
+        <footer class="final-call" id="contact">
+            <div class="glass-panel">
+                <h2 class="translatable" data-en="Discuss Your Vision" data-pl="Omów swoją wizję">Discuss Your Vision</h2>
+                <p class="translatable" data-en="To explore a potential collaboration, please provide the preliminary details of your property below. I will respond within 48 hours." data-pl="Aby omówić potencjalną współpracę, proszę o podanie poniżej wstępnych szczegółów dotyczących nieruchomości. Odpowiem w ciągu 48 godzin.">To explore a potential collaboration, please provide the preliminary details of your property below. I will respond within 48 hours.</p>
+                
+                <form class="contact-form" action="https://formspree.io/f/meedrwze" method="POST">
+                    <div class="form-row">
+                        <input type="text" name="first_name" id="input-fn" placeholder="First Name" required>
+                        <input type="text" name="last_name" id="input-ln" placeholder="Last Name" required>
+                    </div>
+                    <input type="email" name="email" id="input-email" placeholder="Direct Email Address" required>
+                    <select name="service_interest" id="input-service" required>
+                        <option value="" disabled selected>Nature of Commission</option>
+                        <option value="full_package">Full Package Design</option>
+                        <option value="concept">Conceptual Design</option>
+                        <option value="consultation">Design Consultation</option>
+                        <option value="not_sure">Not Sure Yet</option>
+                    </select>
+                    <textarea name="project_details" id="input-msg" placeholder="Please outline the scope, location, and anticipated timeline of your project..." required></textarea>
+                    <button type="submit" class="btn translatable" data-en="Submit Inquiry" data-pl="Wyślij zapytanie">Submit Inquiry</button>
+                </form>
+            </div>
+        </footer>
     </div>
 
-    <!-- Footer / Contact Form -->
-    <footer class="footer-cta" id="contact">
-        <div class="footer-cta-content">
-            <h2 class="translatable" data-en="Ready to rethink your space?" data-pl="Gotowy na zmianę swojej przestrzeni?">Ready to rethink your space?</h2>
-            <p class="translatable" data-en="Every great project starts with a simple conversation." data-pl="Każdy wspaniały projekt zaczyna się od zwykłej rozmowy." style="margin-bottom: 10px; color: var(--text-light);">Every great project starts with a simple conversation.</p>
-            <p class="translatable" data-en="Fill out the form below to tell me about your project, and I will get back to you within 48 hours." data-pl="Wypełnij poniższy formularz, aby opowiedzieć mi o swoim projekcie, a odpowiem w ciągu 48 godzin." style="color: var(--text-light);">Fill out the form below to tell me about your project, and I will get back to you within 48 hours.</p>
-            
-            <!-- Replace YOUR_FORMSPREE_ID in the action URL below once you sign up -->
-            <form class="contact-form" action="https://formspree.io/f/meedrwze" method="POST">
-                <div class="form-row">
-                    <input type="text" name="first_name" id="input-fn" placeholder="First Name" required>
-                    <input type="text" name="last_name" id="input-ln" placeholder="Last Name" required>
-                </div>
-                <input type="email" name="email" id="input-email" placeholder="Email Address" required>
-                
-                <select name="service_interest" id="input-service" required>
-                    <option value="" disabled selected>What service are you interested in?</option>
-                    <option value="full_service">Full-Service Interior Design</option>
-                    <option value="concept_planning">Concept & Layout Planning</option>
-                    <option value="consultation">Design Consultation</option>
-                    <option value="other">Not Sure Yet / Other</option>
-                </select>
-                
-                <textarea name="project_details" id="input-msg" placeholder="Tell me a bit about your space, your goals, and your timeline..." required></textarea>
-                
-                <button type="submit" class="btn translatable" data-en="Send Inquiry" data-pl="Wyślij zapytanie">Send Inquiry</button>
-            </form>
-        </div>
-    </footer>
-
-    <!-- JavaScript to make the Language Toggle and Form Placeholders work -->
     <script>
-        // Form placeholder translations
         const placeholders = {
-            en: {
-                fn: "First Name",
-                ln: "Last Name",
-                email: "Email Address",
-                service: "What service are you interested in?",
-                service_full: "Full-Service Interior Design",
-                service_concept: "Concept & Layout Planning",
-                service_consult: "Design Consultation",
-                service_other: "Not Sure Yet / Other",
-                msg: "Tell me a bit about your space, your goals, and your timeline..."
-            },
-            pl: {
-                fn: "Imię",
-                ln: "Nazwisko",
-                email: "Adres e-mail",
-                service: "Jaką usługą jesteś zainteresowany/a?",
-                service_full: "Kompleksowe projektowanie wnętrz",
-                service_concept: "Koncepcja i układ funkcjonalny",
-                service_consult: "Konsultacje projektowe",
-                service_other: "Jeszcze nie wiem / Inne",
-                msg: "Opowiedz mi trochę o swojej przestrzeni, celach i oczekiwanym terminie..."
-            }
+            en: { fn: "First Name", ln: "Last Name", email: "Direct Email Address", service: "Nature of Commission", service_full: "Full Package Design", service_concept: "Conceptual Design", service_consult: "Design Consultation", service_other: "Not Sure Yet", msg: "Please outline the scope, location, and anticipated timeline of your project..." },
+            pl: { fn: "Imię", ln: "Nazwisko", email: "Bezpośredni adres E-mail", service: "Charakter zlecenia", service_full: "Kompleksowy projekt wnętrz", service_concept: "Projekt koncepcyjny", service_consult: "Konsultacje projektowe", service_other: "Jeszcze nie wiem", msg: "Proszę opisać zakres, lokalizację i przewidywany harmonogram projektu..." }
         };
-
         function setLanguage(lang) {
-            // Update active state on buttons
-            document.getElementById('btn-en').classList.remove('active');
-            document.getElementById('btn-pl').classList.remove('active');
-            document.getElementById(`btn-${lang}`).classList.add('active');
-
-            // Swap all standard text
-            const elements = document.querySelectorAll('.translatable');
-            elements.forEach(el => {
-                el.innerText = el.getAttribute(`data-${lang}`);
-            });
-
-            // Swap form placeholders and dropdown options
-            document.getElementById('input-fn').placeholder = placeholders[lang].fn;
-            document.getElementById('input-ln').placeholder = placeholders[lang].ln;
-            document.getElementById('input-email').placeholder = placeholders[lang].email;
-            document.getElementById('input-msg').placeholder = placeholders[lang].msg;
-
-            const select = document.getElementById('input-service');
-            select.options[0].text = placeholders[lang].service;
-            select.options[1].text = placeholders[lang].service_full;
-            select.options[2].text = placeholders[lang].service_concept;
-            select.options[3].text = placeholders[lang].service_consult;
-            select.options[4].text = placeholders[lang].service_other;
+            document.getElementById('btn-en').classList.remove('active'); document.getElementById('btn-pl').classList.remove('active'); document.getElementById(`btn-${lang}`).classList.add('active');
+            const elements = document.querySelectorAll('.translatable'); elements.forEach(el => { el.innerText = el.getAttribute(`data-${lang}`); });
+            document.getElementById('input-fn').placeholder = placeholders[lang].fn; document.getElementById('input-ln').placeholder = placeholders[lang].ln; document.getElementById('input-email').placeholder = placeholders[lang].email; document.getElementById('input-msg').placeholder = placeholders[lang].msg;
+            const select = document.getElementById('input-service'); select.options[0].text = placeholders[lang].service; select.options[1].text = placeholders[lang].service_full; select.options[2].text = placeholders[lang].service_concept; select.options[3].text = placeholders[lang].service_consult; select.options[4].text = placeholders[lang].service_other;
         }
     </script>
 </body>
