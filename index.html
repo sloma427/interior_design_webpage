@@ -24,10 +24,13 @@
         html { background-color: #0c0c11; scroll-behavior: smooth; }
         body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
+        /* Hardware Accelerated Background */
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: linear-gradient(rgba(10, 10, 15, 0.4), rgba(10, 10, 15, 0.8)), url('https://imgur.com/LONAyEk.jpg') center/cover no-repeat;
             z-index: -2;
+            will-change: transform; 
+            transform: translateZ(0); 
         }
         
         h1, h2, .editorial-header { font-family: 'DM Serif Display', serif; font-weight: 400; margin-bottom: 20px; }
@@ -35,7 +38,7 @@
         a { text-decoration: none; color: inherit; }
 
         /* --- RESPONSIVE NAVIGATION --- */
-        .main-nav { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1300px; z-index: 1000; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; box-sizing: border-box; transition: 0.3s; border-radius: 50px; box-shadow: var(--glass-shadow); }
+        .main-nav { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1300px; z-index: 1000; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; box-sizing: border-box; transition: 0.3s; border-radius: 50px; box-shadow: var(--glass-shadow); will-change: transform, backdrop-filter; }
         .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.3rem; letter-spacing: 1px; }
         
         .nav-links { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; gap: 25px; }
@@ -53,7 +56,9 @@
         .btn { display: inline-block; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 14px 30px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 50px;} 
         .btn:hover { background-color: var(--accent); color: #000; transform: translateY(-1px);}
 
-        .glass-panel { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 50px; box-sizing: border-box; }
+        /* Hardware accelerated glass panels */
+        .glass-panel { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 50px; box-sizing: border-box; will-change: transform, backdrop-filter; }
+        
         .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
 
         .hero { height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); padding-top: 60px; box-sizing: border-box;}
@@ -101,17 +106,18 @@
         .timeline-item:nth-child(odd)::after { right: -7px; }
         .timeline-item:nth-child(even)::after { left: -7px; }
         
-        .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease;}
+        .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease; will-change: transform;}
         .timeline-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); }
         .timeline-year { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; }
         .timeline-card h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--text-main); font-family: 'Inter', sans-serif;}
         .timeline-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; }
 
         /* INTERACTIVE CAROUSEL */
-        .carousel-container { position: relative; margin-top: 20px; border-radius: 12px; overflow: hidden; }
-        .timeline-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+        .carousel-container { position: relative; margin-top: 20px; border-radius: 12px; overflow: hidden; transform: translateZ(0); }
+        .timeline-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; gap: 10px;}
         .timeline-carousel::-webkit-scrollbar { display: none; }
-        .timeline-carousel img { flex: 0 0 100%; height: 220px; object-fit: cover; scroll-snap-align: center; cursor: zoom-in; transition: transform 0.4s ease;}
+        /* Changed snap-align to start for pixel-perfect edge snapping */
+        .timeline-carousel img { flex: 0 0 100%; height: 220px; object-fit: cover; scroll-snap-align: start; cursor: zoom-in; transition: transform 0.4s ease;}
         .timeline-carousel img:hover { transform: scale(1.02); }
         
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); color: #fff; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: 0.3s; font-size: 14px;}
@@ -197,7 +203,6 @@
 </head>
 <body>
     
-    <!-- RESPONSIVE NAVIGATION -->
     <nav class="main-nav">
         <div class="nav-brand">Curated Interiors</div>
         
@@ -238,7 +243,7 @@
                     <p class="translatable" data-en="Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. We bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking." data-pl="Projektowanie najbardziej luksusowych statków wycieczkowych na świecie uczy rzadkiej dyscypliny. Wymaga mistrzowskiego opanowania równowagi między bogatą estetyką, rygorystyczną optymalizacją przestrzeni i zaawansowanymi materiałami. Przenosimy tę precyzję do prestiżowych rezydencji, dbając o to, by Wasze wnętrza były równie bezbłędnie funkcjonalne, co zachwycające.">Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. We bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking.</p>
                 </div>
                 <div class="philosophy-image">
-                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Luxury Materials Close-up">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Luxury Materials Close-up" loading="lazy">
                 </div>
             </div>
         </section>
@@ -251,7 +256,7 @@
             
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="https://i.imgur.com/GXz9JkO.png" alt="Full Package Design">
+                    <img src="https://i.imgur.com/GXz9JkO.png" alt="Full Package Design" loading="lazy">
                     <div class="service-card-text">
                         <h3 class="translatable" data-en="Full Package Design" data-pl="Kompleksowy projekt wnętrz">Full Package Design</h3>
                         <p class="translatable" data-en="From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail." data-pl="Od początkowej koncepcji po kompleksowe rysunki techniczne i precyzyjne specyfikacje materiałowe. Zarządzamy każdym detalem projektu.">From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail.</p>
@@ -259,7 +264,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="https://i.imgur.com/xQ6LBN6.png" alt="Conceptual Design">
+                    <img src="https://i.imgur.com/xQ6LBN6.png" alt="Conceptual Design" loading="lazy">
                     <div class="service-card-text">
                         <h3 class="translatable" data-en="Conceptual Design" data-pl="Projekt koncepcyjny">Conceptual Design</h3>
                         <p class="translatable" data-en="Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project." data-pl="Skupiony na aranżacji przestrzeni, doborze materiałów i ogólnej koncepcji projektowej, aby nadać silny kierunek kreatywny Twojemu projektowi.">Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project.</p>
@@ -267,7 +272,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <img src="https://i.imgur.com/DrDOIl4.png" alt="Design Consultations">
+                    <img src="https://i.imgur.com/DrDOIl4.png" alt="Design Consultations" loading="lazy">
                     <div class="service-card-text">
                         <h3 class="translatable" data-en="Design Consultations" data-pl="Konsultacje projektowe">Design Consultations</h3>
                         <p class="translatable" data-en="Dedicated meetings designed to help create a clear design direction or solve specific spatial and aesthetic problems in your project." data-pl="Dedykowane spotkania, które pomagają wyznaczyć jasny kierunek projektowy lub rozwiązać konkretne problemy przestrzenne i estetyczne w Twoim projekcie.">Dedicated meetings designed to help create a clear design direction or solve specific spatial and aesthetic problems in your project.</p>
@@ -276,7 +281,6 @@
             </div>
         </section>
 
-        <!-- Collapsible Timeline Section -->
         <section id="journey" class="timeline-section page-segment">
             <div class="timeline-header">
                 <h2 class="translatable" data-en="Our Professional Journey" data-pl="Nasza Droga Zawodowa">Our Professional Journey</h2>
@@ -285,7 +289,6 @@
             
             <div class="timeline-wrapper" id="timeline-wrapper">
                 <div class="timeline">
-                    <!-- Point 1 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2014</div>
@@ -294,7 +297,6 @@
                         </div>
                     </div>
                     
-                    <!-- Point 2 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2015</div>
@@ -304,15 +306,14 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
                                 <div class="timeline-carousel">
-                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Milan Project 1">
-                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Milan Project 2">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Milan Project 1" loading="lazy">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Milan Project 2" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Point 3 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2016</div>
@@ -321,7 +322,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 4 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2018</div>
@@ -331,16 +331,15 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
                                 <div class="timeline-carousel">
-                                    <img src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 1">
-                                    <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 2">
-                                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 3">
+                                    <img src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 1" loading="lazy">
+                                    <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 2" loading="lazy">
+                                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 3" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Point 5 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2019</div>
@@ -349,7 +348,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 6 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2020</div>
@@ -358,7 +356,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 7 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2021</div>
@@ -368,15 +365,14 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
                                 <div class="timeline-carousel">
-                                    <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=600&q=80" alt="Boutique 1">
-                                    <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=600&q=80" alt="Boutique 2">
+                                    <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=600&q=80" alt="Boutique 1" loading="lazy">
+                                    <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=600&q=80" alt="Boutique 2" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Point 8 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2022</div>
@@ -385,7 +381,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 9 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2023</div>
@@ -394,7 +389,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 10 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2024</div>
@@ -404,8 +398,8 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
                                 <div class="timeline-carousel">
-                                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Studio 1">
-                                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Studio 2">
+                                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Studio 1" loading="lazy">
+                                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Studio 2" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
                             </div>
@@ -418,11 +412,10 @@
             <button id="toggle-timeline-btn" class="btn translatable" data-en="Expand Journey" data-pl="Rozwiń historię" onclick="toggleTimeline()">Expand Journey</button>
         </section>
 
-        <!-- About Us Section (Two Photos) -->
         <section id="about" class="about-combination page-segment">
             <div class="about-images">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Founder One">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Founder Two">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Founder One" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Founder Two" loading="lazy">
             </div>
             <div class="glass-panel about-text">
                 <h2 class="translatable" data-en="Mastery of Scale & Detail" data-pl="Mistrzostwo skali i detalu">Mastery of Scale & Detail</h2>
@@ -458,7 +451,6 @@
         </footer>
     </div>
 
-    <!-- LIGHTBOX MODAL -->
     <div id="image-modal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img id="modal-img" class="modal-content" src="" alt="Detailed View" onclick="event.stopPropagation()">
@@ -516,12 +508,22 @@
             document.getElementById('nav-links').classList.toggle('active');
         }
 
-        // SCROLL CAROUSEL (Arrows)
+        // --- OPTIMIZED SCROLL CAROUSEL (Arrows) ---
         function scrollCarousel(button, direction) {
             const container = button.parentElement;
             const carousel = container.querySelector('.timeline-carousel');
-            const scrollAmount = carousel.offsetWidth; 
-            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            const images = Array.from(carousel.querySelectorAll('img'));
+            
+            // Calculate current index based on scroll position
+            const itemWidth = carousel.clientWidth + 10; // +10 for gap
+            const currentIndex = Math.round(carousel.scrollLeft / itemWidth);
+            
+            let nextIndex = currentIndex + direction;
+            if (nextIndex < 0) nextIndex = 0;
+            if (nextIndex >= images.length) nextIndex = images.length - 1;
+
+            // Use native element scrolling instead of pixel math to avoid snapping conflict
+            images[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         }
 
         // CLOSE MODAL
@@ -538,7 +540,7 @@
             });
         });
 
-        // INIT CAROUSEL DOTS & MODAL INTERACTIONS
+        // --- OPTIMIZED CAROUSEL DOTS & MODAL INTERACTIONS ---
         function initCarouselsAndModals() {
             const containers = document.querySelectorAll('.carousel-container');
             
@@ -554,9 +556,13 @@
                     // Generate Dots
                     const dot = document.createElement('div');
                     dot.className = 'dot' + (index === 0 ? ' active' : '');
+                    
+                    // Assign dataset index for Intersection Observer
+                    img.dataset.index = index;
+                    
+                    // Dot Click Event
                     dot.addEventListener('click', () => {
-                        const scrollAmount = carousel.offsetWidth;
-                        carousel.scrollTo({ left: index * scrollAmount, behavior: 'smooth' });
+                        img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                     });
                     dotsContainer.appendChild(dot);
                     
@@ -574,17 +580,22 @@
                 
                 container.appendChild(dotsContainer);
                 
-                // Sync dots on scroll
-                carousel.addEventListener('scroll', () => {
-                    const scrollPos = carousel.scrollLeft;
-                    const width = carousel.offsetWidth;
-                    const activeIndex = Math.round(scrollPos / width);
-                    
-                    const dots = dotsContainer.querySelectorAll('.dot');
-                    dots.forEach((dot, i) => {
-                        dot.classList.toggle('active', i === activeIndex);
+                // Intersection Observer for updating active dot (MUCH better for performance than 'scroll' event listener)
+                const dotElements = dotsContainer.querySelectorAll('.dot');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const index = entry.target.dataset.index;
+                            dotElements.forEach(d => d.classList.remove('active'));
+                            if(dotElements[index]) dotElements[index].classList.add('active');
+                        }
                     });
+                }, {
+                    root: carousel,
+                    threshold: 0.5 // Triggers when at least 50% of the image is visible
                 });
+
+                images.forEach(img => observer.observe(img));
             });
 
             // Close modal with Escape key
@@ -598,13 +609,12 @@
             initCarouselsAndModals();
 
             // Intersection Observer for Scroll Spy (Active Navigation Links)
-            // Added #home so the top section highlights the Home link
             const sections = document.querySelectorAll(".page-segment, #home");
             const navLinks = document.querySelectorAll(".nav-links li a");
 
             const observerOptions = {
                 root: null,
-                rootMargin: "-20% 0px -60% 0px", // Triggers when the section reaches top 20% of viewport
+                rootMargin: "-20% 0px -60% 0px", 
                 threshold: 0
             };
 
