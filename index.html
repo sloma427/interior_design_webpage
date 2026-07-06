@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,7 @@
             --accent: #fff; 
             
             --grid-gap: 30px;
-            --panel-radius: 4px;
+            --panel-radius: 24px; 
         }
         
         html { background-color: #0c0c11; scroll-behavior: smooth; }
@@ -27,47 +26,47 @@
 
         body::before {
             content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(10, 10, 15, 0.4), rgba(10, 10, 15, 0.7)), url('https://imgur.com/LONAyEk.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(10, 10, 15, 0.4), rgba(10, 10, 15, 0.8)), url('https://imgur.com/LONAyEk.jpg') center/cover no-repeat;
             z-index: -2;
         }
         
         h1, h2, .editorial-header { font-family: 'DM Serif Display', serif; font-weight: 400; margin-bottom: 20px; }
         h3, h4 { font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
-        a { text-decoration: none; }
+        a { text-decoration: none; color: inherit; }
 
-        .top-nav { position: fixed; top: 20px; right: 20px; z-index: 100; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); padding: 8px 16px; border-radius: 4px; box-shadow: var(--glass-shadow); }
-        .lang-switch { font-size: 12px; font-weight: 600; letter-spacing: 1.5px;}
+        /* --- RESPONSIVE NAVIGATION --- */
+        .main-nav { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 1300px; z-index: 1000; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; box-sizing: border-box; transition: 0.3s; border-radius: 50px; box-shadow: var(--glass-shadow); }
+        .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1.3rem; letter-spacing: 1px; }
+        
+        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; gap: 25px; }
+        .nav-links li a { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-light); transition: 0.3s; }
+        .nav-links li a:hover, .nav-links li a.active-nav { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+        .nav-controls { display: flex; align-items: center; gap: 20px; }
+        .lang-switch { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; border-left: 1px solid var(--glass-border); padding-left: 20px;}
         .lang-switch a { color: var(--text-light); margin: 0 6px; cursor: pointer; transition: 0.3s; }
         .lang-switch a:hover, .lang-switch a.active { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px;}
-        .lang-switch span { display: none; }
 
-        .btn { display: inline-block; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 14px 30px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 2px;}
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: var(--accent); transition: 0.3s; }
+
+        .btn { display: inline-block; background-color: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 14px 30px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 50px;} 
         .btn:hover { background-color: var(--accent); color: #000; transform: translateY(-1px);}
 
-        .glass-panel {
-            background: var(--glass-bg); 
-            backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); 
-            border: 1px solid var(--glass-border); 
-            border-radius: var(--panel-radius); 
-            box-shadow: var(--glass-shadow);
-            padding: 50px;
-            box-sizing: border-box;
-        }
-
+        .glass-panel { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 50px; box-sizing: border-box; }
         .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
 
-        .hero { height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .hero { height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); padding-top: 60px; box-sizing: border-box;}
         .hero-title-box { grid-column: 1 / span 1; text-align: left; max-width: 650px; padding-right: 50px;}
         .hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1; margin-bottom: 25px; letter-spacing: -2px; }
         .hero p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 35px; max-width: 85%; }
 
-        .page-segment { padding: 100px 0; }
+        .page-segment { padding: 100px 0; scroll-margin-top: 70px; }
         .philosophy { text-align: left; display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--grid-gap); align-items: center;}
         .philosophy-text h2 { font-size: 3rem; margin-top: 0; }
         .philosophy-text p { font-size: 1.1rem; color: var(--text-light); line-height: 1.7; }
         .philosophy-image img { width: 100%; height: 500px; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
 
-        .services-section { padding-top: 40px; }
         .services-header { text-align: center; margin-bottom: 60px; }
         .services-header h2 { font-size: 3rem; margin-bottom: 15px; }
         .services-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
@@ -80,20 +79,68 @@
         .service-card-text h3 { margin-top: 0; margin-bottom: 15px; font-family: 'DM Serif Display', serif; font-size: 1.6rem; text-transform: none; letter-spacing: 0;}
         .service-card-text p { margin: 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
 
+        /* Timeline styling */
+        .timeline-section { text-align: center; }
+        .timeline-header { text-align: center; margin-bottom: 60px; }
+        .timeline-header h2 { font-size: 3rem; margin-bottom: 15px; }
+        .timeline-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+        
+        .timeline-wrapper { position: relative; max-height: 850px; overflow: hidden; transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 40px; }
+        .timeline-wrapper.expanded { max-height: 6000px; }
+        .timeline-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 250px; background: linear-gradient(transparent, rgba(12, 12, 17, 1)); transition: opacity 0.4s; pointer-events: none; z-index: 2; }
+        .timeline-wrapper.expanded .timeline-overlay { opacity: 0; }
+        
+        .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding-bottom: 40px;}
+        .timeline::after { content: ''; position: absolute; width: 1px; background: var(--glass-border); top: 0; bottom: 0; left: 50%; margin-left: -0.5px; }
+        
+        .timeline-item { padding: 10px 40px; position: relative; background-color: transparent; width: 50%; box-sizing: border-box; margin-bottom: 40px; }
+        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+        
+        .timeline-item::after { content: ''; position: absolute; width: 14px; height: 14px; background-color: var(--accent); border-radius: 50%; top: 30px; z-index: 1; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .timeline-item:nth-child(odd)::after { right: -7px; }
+        .timeline-item:nth-child(even)::after { left: -7px; }
+        
+        .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease;}
+        .timeline-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); }
+        .timeline-year { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; }
+        .timeline-card h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--text-main); font-family: 'Inter', sans-serif;}
+        .timeline-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; }
+
+        /* INTERACTIVE CAROUSEL */
+        .carousel-container { position: relative; margin-top: 20px; border-radius: 12px; overflow: hidden; }
+        .timeline-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+        .timeline-carousel::-webkit-scrollbar { display: none; }
+        .timeline-carousel img { flex: 0 0 100%; height: 220px; object-fit: cover; scroll-snap-align: center; cursor: zoom-in; transition: transform 0.4s ease;}
+        .timeline-carousel img:hover { transform: scale(1.02); }
+        
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); color: #fff; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: 0.3s; font-size: 14px;}
+        .carousel-btn:hover { background: var(--accent); color: #000; }
+        .carousel-btn.prev { left: 10px; }
+        .carousel-btn.next { right: 10px; }
+
+        /* CAROUSEL DOTS */
+        .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .dot.active { background: #ffffff; transform: scale(1.3); }
+
+        /* MODAL / LIGHTBOX */
+        .modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.9); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.3s ease; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); cursor: zoom-out;}
+        .modal.active { opacity: 1; visibility: visible; }
+        .modal-content { max-width: 90%; max-height: 90vh; border-radius: var(--panel-radius); box-shadow: 0 10px 50px rgba(0,0,0,0.6); object-fit: contain; cursor: default;}
+        .modal-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 40px; font-weight: 300; cursor: pointer; transition: 0.3s; font-family: 'Inter', sans-serif;}
+        .modal-close:hover { color: var(--accent); transform: scale(1.1); }
+
+        /* About Us with 2 Photos */
         .about-combination { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grid-gap); align-items: stretch; margin-top: 40px;}
-        .about-image img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
+        .about-images { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .about-images img { width: 100%; height: 100%; min-height: 400px; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
+        
         .about-text { justify-content: center; display: flex; flex-direction: column; align-items: flex-start; }
         .about-text h2 { font-size: 3rem; margin-top: 0; }
         .about-text .btn { margin-top: 15px; }
         
-        /* Signature styling */
-        .designer-signature { 
-            font-family: 'Great Vibes', cursive; 
-            font-size: 3rem; 
-            color: var(--accent); 
-            margin-top: 30px; 
-            opacity: 0.9;
-        }
+        .designer-signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--accent); margin-top: 30px; opacity: 0.9; }
 
         .final-call { max-width: 900px; margin: 120px auto 60px; text-align: center; }
         .final-call h2 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
@@ -102,12 +149,13 @@
         .contact-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
-        .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 18px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); border-radius: 4px; font-family: inherit; font-size: 15px; color: #fff; box-sizing: border-box; transition: 0.3s; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);}
+        /* Softened input corners */
+        .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 18px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); border-radius: 16px; font-family: inherit; font-size: 15px; color: #fff; box-sizing: border-box; transition: 0.3s; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);}
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: rgba(255,255,255,0.4); background: rgba(0,0,0,0.5); }
         .contact-form select { background-color: rgba(15,15,15,0.95); }
         .contact-form select option { background: #111; color: #fff; }
-        .contact-form textarea { min-height: 150px; resize: none; }
-        .contact-form .btn { width: 100%; margin-top: 10px; padding: 20px; border-radius: 4px; font-size: 13px; font-weight: 700; background-color: #fff; color: #000; border: none;}
+        .contact-form textarea { min-height: 150px; resize: none; border-radius: 16px; }
+        .contact-form .btn { width: 100%; margin-top: 10px; padding: 20px; border-radius: 50px; font-size: 13px; font-weight: 700; background-color: #fff; color: #000; border: none;}
         .contact-form .btn:hover { background-color: #eee; }
 
         @media (max-width: 1024px) {
@@ -115,48 +163,67 @@
             .hero-title-box { padding-right: 0; max-width: 100%;}
             .philosophy, .services-grid, .about-combination, .form-row { grid-template-columns: 1fr !important; }
             .philosophy-image img { height: 400px; }
-            .about-image img { height: 400px; }
+            .about-images img { min-height: 300px; }
             .final-call h2 { font-size: 3rem; }
             .hero h1 { font-size: 3.5rem; }
         }
         
-        /* Zmienione ustawienia dla widoku mobilnego */
         @media (max-width: 768px) { 
-            /* Przywrócony przełącznik języków na urządzeniach mobilnych */
-            .top-nav { 
-                padding: 6px 12px; 
-                top: 15px; 
-                right: 15px; 
-            }
-            .lang-switch { font-size: 10px; }
+            /* Mobile Navigation */
+            .main-nav { padding: 10px 20px; width: calc(100% - 30px); top: 10px; border-radius: 20px;}
+            .hamburger { display: flex; }
+            .nav-links { position: absolute; top: 110%; left: 0; width: 100%; background: rgba(15, 15, 20, 0.95); backdrop-filter: blur(20px); border-radius: 20px; flex-direction: column; padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow);}
+            .nav-links.active { max-height: 400px; padding: 20px 0; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch { border-left: none; padding-left: 0; }
             
-            .glass-panel { padding: 30px; }
+            .glass-panel { padding: 30px; border-radius: 16px; }
             
-            /* Zabezpieczenie długich słów ("Bezkompromisowa") i zmniejszenie fontu w Hero */
-            .hero h1 { 
-                font-size: 2.2rem; 
-                word-wrap: break-word; 
-                -webkit-hyphens: auto; 
-                hyphens: auto; 
-                line-height: 1.2;
-            }
+            .hero h1 { font-size: 2.2rem; word-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; line-height: 1.2; }
             .hero p { font-size: 1rem; }
             
-            .philosophy-text h2, .services-header h2, .about-text h2 { font-size: 2.2rem; }
+            .philosophy-text h2, .services-header h2, .about-text h2, .timeline-header h2 { font-size: 2.2rem; }
             .final-call h2 { font-size: 2.5rem; }
             .designer-signature { font-size: 2.5rem; }
+
+            /* Timeline Mobile Fixes */
+            .timeline::after { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; left: 0 !important; text-align: left !important; }
+            .timeline-item::after { left: 13px !important; top: 30px; }
+            
+            .about-images { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="lang-switch">
-            <a onclick="setLanguage('en')" id="btn-en" class="active">EN</a><a onclick="setLanguage('pl')" id="btn-pl">PL</a>
+    
+    <!-- RESPONSIVE NAVIGATION -->
+    <nav class="main-nav">
+        <div class="nav-brand">Curated Interiors</div>
+        
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home" class="translatable" data-en="Home" data-pl="Start">Home</a></li>
+            <li><a href="#philosophy" class="translatable" data-en="Philosophy" data-pl="Filozofia">Philosophy</a></li>
+            <li><a href="#services" class="translatable" data-en="Services" data-pl="Usługi">Services</a></li>
+            <li><a href="#journey" class="translatable" data-en="Journey" data-pl="Historia">Journey</a></li>
+            <li><a href="#about" class="translatable" data-en="About Us" data-pl="O nas">About Us</a></li>
+            <li><a href="#contact" class="translatable" data-en="Contact" data-pl="Kontakt">Contact</a></li>
+        </ul>
+
+        <div class="nav-controls">
+            <div class="lang-switch">
+                <a onclick="setLanguage('en')" id="btn-en" class="active">EN</a><a onclick="setLanguage('pl')" id="btn-pl">PL</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
     <div class="container">
-        <header class="hero">
+        <header id="home" class="hero">
             <div class="hero-title-box">
                 <h1 class="translatable" data-en="Uncompromising Scale. Private Luxury." data-pl="Bezkompromisowa skala. Prywatny luksus.">Uncompromising Scale. Private Luxury.</h1>
                 <p class="translatable" data-en="Elevating private residences with an exacting standard of luxury. We curate bespoke interior environments for individuals who demand the extraordinary." data-pl="Podnosimy standard prywatnych rezydencji do poziomu absolutnego luksusu. Tworzymy wysoce spersonalizowane wnętrza dla klientów, którzy oczekują tego, co niezwykłe.">Elevating private residences with an exacting standard of luxury. We curate bespoke interior environments for individuals who demand the extraordinary.</p>
@@ -164,11 +231,11 @@
             </div>
         </header>
 
-        <section class="page-segment">
+        <section id="philosophy" class="page-segment">
             <div class="glass-panel philosophy">
                 <div class="philosophy-text">
                     <h2 class="translatable" data-en="The Art of Refined Living" data-pl="Sztuka wyrafinowanego życia">The Art of Refined Living</h2>
-                    <p class="translatable" data-en="Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. I bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking." data-pl="Projektowanie najbardziej luksusowych statków wycieczkowych na świecie uczy rzadkiej dyscypliny. Wymaga mistrzowskiego opanowania równowagi między bogatą estetyką, rygorystyczną optymalizacją przestrzeni i zaawansowanymi materiałami. Przenoszę tę precyzję do prestiżowych rezydencji, dbając o to, by Twoje wnętrza były równie bezbłędnie funkcjonalne, co zachwycające.">Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. I bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking.</p>
+                    <p class="translatable" data-en="Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. We bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking." data-pl="Projektowanie najbardziej luksusowych statków wycieczkowych na świecie uczy rzadkiej dyscypliny. Wymaga mistrzowskiego opanowania równowagi między bogatą estetyką, rygorystyczną optymalizacją przestrzeni i zaawansowanymi materiałami. Przenosimy tę precyzję do prestiżowych rezydencji, dbając o to, by Wasze wnętrza były równie bezbłędnie funkcjonalne, co zachwycające.">Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. We bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking.</p>
                 </div>
                 <div class="philosophy-image">
                     <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Luxury Materials Close-up">
@@ -176,10 +243,10 @@
             </div>
         </section>
 
-        <section class="services-section">
+        <section id="services" class="page-segment" style="padding-top: 40px;">
             <div class="services-header">
                 <h2 class="translatable" data-en="Bespoke Commissions" data-pl="Zlecenia indywidualne">Bespoke Commissions</h2>
-                <p class="translatable" data-en="I accept a select number of private residential commissions per year, ensuring absolute dedication to realizing your unique vision." data-pl="Przyjmuję wyselekcjonowaną liczbę prywatnych zleceń mieszkaniowych rocznie, zapewniając absolutne zaangażowanie w realizację Twojej unikalnej wizji.">I accept a select number of private residential commissions per year, ensuring absolute dedication to realizing your unique vision.</p>
+                <p class="translatable" data-en="We accept a select number of private residential commissions per year, ensuring absolute dedication to realizing your unique vision." data-pl="Przyjmujemy wyselekcjonowaną liczbę prywatnych zleceń mieszkaniowych rocznie, zapewniając absolutne zaangażowanie w realizację Twojej unikalnej wizji.">We accept a select number of private residential commissions per year, ensuring absolute dedication to realizing your unique vision.</p>
             </div>
             
             <div class="services-grid">
@@ -187,7 +254,7 @@
                     <img src="https://i.imgur.com/GXz9JkO.png" alt="Full Package Design">
                     <div class="service-card-text">
                         <h3 class="translatable" data-en="Full Package Design" data-pl="Kompleksowy projekt wnętrz">Full Package Design</h3>
-                        <p class="translatable" data-en="From the initial concept to comprehensive technical drawings and precise material specifications. I manage every design detail." data-pl="Od początkowej koncepcji po kompleksowe rysunki techniczne i precyzyjne specyfikacje materiałowe. Zarządzam każdym detalem projektu.">From the initial concept to comprehensive technical drawings and precise material specifications. I manage every design detail.</p>
+                        <p class="translatable" data-en="From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail." data-pl="Od początkowej koncepcji po kompleksowe rysunki techniczne i precyzyjne specyfikacje materiałowe. Zarządzamy każdym detalem projektu.">From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail.</p>
                     </div>
                 </div>
                 
@@ -209,24 +276,167 @@
             </div>
         </section>
 
-        <section class="about-combination">
-            <div class="about-image">
-                <img src="https://i.imgur.com/jpqDx8e.jpeg" alt="The Designer">
+        <!-- Collapsible Timeline Section -->
+        <section id="journey" class="timeline-section page-segment">
+            <div class="timeline-header">
+                <h2 class="translatable" data-en="Our Professional Journey" data-pl="Nasza Droga Zawodowa">Our Professional Journey</h2>
+                <p class="translatable" data-en="A legacy of design excellence spanning over a decade before establishing our own studio." data-pl="Dziedzictwo doskonałości projektowej wypracowane przez ponad dekadę, zanim założyliśmy własne studio.">A legacy of design excellence spanning over a decade before establishing our own studio.</p>
+            </div>
+            
+            <div class="timeline-wrapper" id="timeline-wrapper">
+                <div class="timeline">
+                    <!-- Point 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2014</div>
+                            <h3 class="translatable" data-en="Early Foundations" data-pl="Wczesne Podwaliny">Early Foundations</h3>
+                            <p class="translatable" data-en="Began our careers in boutique residential design, learning the intricacies of bespoke craftsmanship and client relations." data-pl="Rozpoczęliśmy nasze kariery w butikowym projektowaniu wnętrz, poznając tajniki rzemiosła na wymiar i relacji z klientami.">Began our careers in boutique residential design, learning the intricacies of bespoke craftsmanship and client relations.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Point 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2015</div>
+                            <h3 class="translatable" data-en="First International Commission" data-pl="Pierwsze Międzynarodowe Zlecenie">First International Commission</h3>
+                            <p class="translatable" data-en="Secured and successfully delivered our first overseas project: a luxury apartment in the heart of Milan." data-pl="Pozyskaliśmy i z sukcesem zrealizowaliśmy nasz pierwszy zagraniczny projekt: luksusowy apartament w sercu Mediolanu.">Secured and successfully delivered our first overseas project: a luxury apartment in the heart of Milan.</p>
+                            
+                            <div class="carousel-container">
+                                <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                                <div class="timeline-carousel">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Milan Project 1">
+                                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Milan Project 2">
+                                </div>
+                                <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2016</div>
+                            <h3 class="translatable" data-en="Entry into Maritime Design" data-pl="Wejście w Projektowanie Morskie">Entry into Maritime Design</h3>
+                            <p class="translatable" data-en="Transitioned into the maritime sector as Junior Architects, adapting high-end aesthetics to strict engineering constraints." data-pl="Przeszliśmy do sektora morskiego jako Młodsi Architekci, dostosowując luksusową estetykę do surowych ograniczeń inżynieryjnych.">Transitioned into the maritime sector as Junior Architects, adapting high-end aesthetics to strict engineering constraints.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2018</div>
+                            <h3 class="translatable" data-en="Senior Designers at Royal Maritime" data-pl="Starsi Projektanci w Royal Maritime">Senior Designers at Royal Maritime</h3>
+                            <p class="translatable" data-en="Led the interior architecture for ultra-luxury cruise suites, focusing on bespoke joinery and optimizing spatial flow." data-pl="Kierowaliśmy architekturą wnętrz ultra-luksusowych apartamentów na statkach wycieczkowych, skupiając się na stolarce na wymiar.">Led the interior architecture for ultra-luxury cruise suites, focusing on bespoke joinery and optimizing spatial flow.</p>
+                            
+                            <div class="carousel-container">
+                                <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                                <div class="timeline-carousel">
+                                    <img src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 1">
+                                    <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 2">
+                                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80" alt="Maritime Suite 3">
+                                </div>
+                                <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Point 5 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2019</div>
+                            <h3 class="translatable" data-en="Sustainable Luxury Award" data-pl="Nagroda Zrównoważonego Luksusu">Sustainable Luxury Award</h3>
+                            <p class="translatable" data-en="Recognized for integrating sustainable, highly-engineered materials into high-end yachting environments without compromising aesthetics." data-pl="Wyróżnieni za integrację zrównoważonych materiałów w luksusowych jachtach bez kompromisów estetycznych.">Recognized for integrating sustainable, highly-engineered materials into high-end yachting environments without compromising aesthetics.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 6 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2020</div>
+                            <h3 class="translatable" data-en="Lead Architects at Opus Residences" data-pl="Główni Architekci w Opus Residences">Lead Architects at Opus Residences</h3>
+                            <p class="translatable" data-en="Directed complete renovations of historical townhouses and high-end penthouses across major European capitals." data-pl="Kierowaliśmy kompleksowymi renowacjami zabytkowych kamienic i luksusowych penthouse'ów w europejskich stolicach.">Directed complete renovations of historical townhouses and high-end penthouses across major European capitals.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 7 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2021</div>
+                            <h3 class="translatable" data-en="Expansion to Commercial Luxury" data-pl="Ekspansja w Komercyjny Luksus">Expansion to Commercial Luxury</h3>
+                            <p class="translatable" data-en="Designed flagship boutiques for international heritage brands, blending retail psychology with profound elegance." data-pl="Zaprojektowaliśmy flagowe butiki dla międzynarodowych marek premium, łącząc psychologię sprzedaży z głęboką elegancją.">Designed flagship boutiques for international heritage brands, blending retail psychology with profound elegance.</p>
+                            
+                            <div class="carousel-container">
+                                <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                                <div class="timeline-carousel">
+                                    <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=600&q=80" alt="Boutique 1">
+                                    <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=600&q=80" alt="Boutique 2">
+                                </div>
+                                <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Point 8 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2022</div>
+                            <h3 class="translatable" data-en="Alpine Resort Concept" data-pl="Koncept Resortu Alpejskiego">Alpine Resort Concept</h3>
+                            <p class="translatable" data-en="Collaborated as principal consultants for an award-winning boutique hotel chain in the Swiss Alps." data-pl="Współpracowaliśmy jako główni konsultanci dla nagradzanej sieci butikowych hoteli w Alpach Szwajcarskich.">Collaborated as principal consultants for an award-winning boutique hotel chain in the Swiss Alps.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 9 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2023</div>
+                            <h3 class="translatable" data-en="Private Estate Consulting" data-pl="Konsulting Prywatnych Rezydencji">Private Estate Consulting</h3>
+                            <p class="translatable" data-en="Focused exclusively on highly confidential, large-scale residential projects for ultra-high-net-worth individuals." data-pl="Skupiliśmy się wyłącznie na wysoce poufnych, wielkoskalowych projektach mieszkaniowych dla najbardziej wymagających klientów.">Focused exclusively on highly confidential, large-scale residential projects for ultra-high-net-worth individuals.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 10 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2024</div>
+                            <h3 class="translatable" data-en="Founding Curated Interiors" data-pl="Założenie Curated Interiors">Founding Curated Interiors</h3>
+                            <p class="translatable" data-en="Combined our multidisciplinary expertise to launch our own studio, dedicated to uncompromising scale and private luxury." data-pl="Połączyliśmy nasze multidyscyplinarne doświadczenie, aby otworzyć własne studio, oddane bezkompromisowej skali i prywatnemu luksusowi.">Combined our multidisciplinary expertise to launch our own studio, dedicated to uncompromising scale and private luxury.</p>
+                            
+                            <div class="carousel-container">
+                                <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">&#10094;</button>
+                                <div class="timeline-carousel">
+                                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Studio 1">
+                                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Studio 2">
+                                </div>
+                                <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">&#10095;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-overlay"></div>
+            </div>
+            
+            <button id="toggle-timeline-btn" class="btn translatable" data-en="Expand Journey" data-pl="Rozwiń historię" onclick="toggleTimeline()">Expand Journey</button>
+        </section>
+
+        <!-- About Us Section (Two Photos) -->
+        <section id="about" class="about-combination page-segment">
+            <div class="about-images">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Founder One">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Founder Two">
             </div>
             <div class="glass-panel about-text">
                 <h2 class="translatable" data-en="Mastery of Scale & Detail" data-pl="Mistrzostwo skali i detalu">Mastery of Scale & Detail</h2>
-                <p class="translatable" data-en="With years of experience spanning both ultra-luxury maritime and high-end residential interior design, I bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, I engineer environments of profound elegance. Whether on land or at sea, I manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space." data-pl="Dzięki wieloletniemu doświadczeniu, obejmującemu zarówno ultra-luksusowe projekty morskie, jak i prestiżowe wnętrza mieszkalne, wnoszę do każdego projektu to, co najlepsze z obu tych światów. Projektowanie dla mega-wycieczkowców zaszczepiło we mnie rzadką dyscyplinę – mistrzowskie opanowanie balansu między bogatą estetyką, rygorystyczną optymalizacją przestrzeni a zaawansowanymi materiałami. Łącząc tę techniczną precyzję z ciepłem i osobistym podejściem typowym dla projektów mieszkaniowych, tworzę przestrzenie o bezkompromisowej elegancji. Zdejmuję z Ciebie cały ciężar procesu, pozwalając Ci po prostu cieszyć się płynną metamorfozą Twojego wnętrza.">With years of experience spanning both ultra-luxury maritime and high-end residential interior design, I bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, I engineer environments of profound elegance. Whether on land or at sea, I manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space.</p>
+                <p class="translatable" data-en="With years of collective experience spanning both ultra-luxury maritime and high-end residential interior design, we bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline in us—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, we engineer environments of profound elegance. Whether on land or at sea, we manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space." data-pl="Dzięki wieloletniemu, wspólnemu doświadczeniu, obejmującemu zarówno ultra-luksusowe projekty morskie, jak i prestiżowe wnętrza mieszkalne, wnoszymy do każdego projektu to, co najlepsze z obu tych światów. Projektowanie dla mega-wycieczkowców zaszczepiło w nas rzadką dyscyplinę – mistrzowskie opanowanie balansu między bogatą estetyką, rygorystyczną optymalizacją przestrzeni a zaawansowanymi materiałami. Łącząc tę techniczną precyzję z ciepłem i osobistym podejściem typowym dla projektów mieszkaniowych, tworzymy przestrzenie o bezkompromisowej elegancji. Zdejmujemy z Ciebie cały ciężar procesu, pozwalając Ci po prostu cieszyć się płynną metamorfozą Twojego wnętrza.">With years of collective experience spanning both ultra-luxury maritime and high-end residential interior design, we bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline in us—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, we engineer environments of profound elegance. Whether on land or at sea, we manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space.</p>
                 <a href="#contact" class="btn translatable" data-en="Let's connect" data-pl="Skontaktujmy się">Let's connect</a>
                 
-                <div class="designer-signature">A. Designer</div>
-                
+                <div class="designer-signature">A. & B. Designers</div>
             </div>
         </section>
 
-        <footer class="final-call" id="contact">
+        <footer id="contact" class="final-call page-segment">
             <div class="glass-panel">
                 <h2 class="translatable" data-en="Discuss Your Vision" data-pl="Omów swoją wizję">Discuss Your Vision</h2>
-                <p class="translatable" data-en="To explore a potential collaboration, please provide the preliminary details of your property below. I will respond within 48 hours." data-pl="Aby omówić potencjalną współpracę, proszę o podanie poniżej wstępnych szczegółów dotyczących nieruchomości. Odpowiem w ciągu 48 godzin.">To explore a potential collaboration, please provide the preliminary details of your property below. I will respond within 48 hours.</p>
+                <p class="translatable" data-en="To explore a potential collaboration, please provide the preliminary details of your property below. We will respond within 48 hours." data-pl="Aby omówić potencjalną współpracę, proszę o podanie poniżej wstępnych szczegółów dotyczących nieruchomości. Odpowiemy w ciągu 48 godzin.">To explore a potential collaboration, please provide the preliminary details of your property below. We will respond within 48 hours.</p>
                 
                 <form class="contact-form" action="https://formspree.io/f/meedrwze" method="POST">
                     <div class="form-row">
@@ -248,17 +458,173 @@
         </footer>
     </div>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="image-modal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modal-img" class="modal-content" src="" alt="Detailed View" onclick="event.stopPropagation()">
+    </div>
+
     <script>
         const placeholders = {
             en: { fn: "First Name", ln: "Last Name", email: "Direct Email Address", service: "Nature of Commission", service_full: "Full Package Design", service_concept: "Conceptual Design", service_consult: "Design Consultation", service_other: "Not Sure Yet", msg: "Please outline the scope, location, and anticipated timeline of your project..." },
             pl: { fn: "Imię", ln: "Nazwisko", email: "Bezpośredni adres E-mail", service: "Charakter zlecenia", service_full: "Kompleksowy projekt wnętrz", service_concept: "Projekt koncepcyjny", service_consult: "Konsultacje projektowe", service_other: "Jeszcze nie wiem", msg: "Proszę opisać zakres, lokalizację i przewidywany harmonogram projektu..." }
         };
+        
         function setLanguage(lang) {
-            document.getElementById('btn-en').classList.remove('active'); document.getElementById('btn-pl').classList.remove('active'); document.getElementById(`btn-${lang}`).classList.add('active');
-            const elements = document.querySelectorAll('.translatable'); elements.forEach(el => { el.innerText = el.getAttribute(`data-${lang}`); });
-            document.getElementById('input-fn').placeholder = placeholders[lang].fn; document.getElementById('input-ln').placeholder = placeholders[lang].ln; document.getElementById('input-email').placeholder = placeholders[lang].email; document.getElementById('input-msg').placeholder = placeholders[lang].msg;
-            const select = document.getElementById('input-service'); select.options[0].text = placeholders[lang].service; select.options[1].text = placeholders[lang].service_full; select.options[2].text = placeholders[lang].service_concept; select.options[3].text = placeholders[lang].service_consult; select.options[4].text = placeholders[lang].service_other;
+            document.getElementById('btn-en').classList.remove('active'); 
+            document.getElementById('btn-pl').classList.remove('active'); 
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            const elements = document.querySelectorAll('.translatable'); 
+            elements.forEach(el => { el.innerText = el.getAttribute(`data-${lang}`); });
+            
+            document.getElementById('input-fn').placeholder = placeholders[lang].fn; 
+            document.getElementById('input-ln').placeholder = placeholders[lang].ln; 
+            document.getElementById('input-email').placeholder = placeholders[lang].email; 
+            document.getElementById('input-msg').placeholder = placeholders[lang].msg;
+            
+            const select = document.getElementById('input-service'); 
+            select.options[0].text = placeholders[lang].service; 
+            select.options[1].text = placeholders[lang].service_full; 
+            select.options[2].text = placeholders[lang].service_concept; 
+            select.options[3].text = placeholders[lang].service_consult; 
+            select.options[4].text = placeholders[lang].service_other;
         }
+
+        function toggleTimeline() {
+            const wrapper = document.getElementById('timeline-wrapper');
+            const btn = document.getElementById('toggle-timeline-btn');
+            
+            wrapper.classList.toggle('expanded');
+            
+            const isExpanded = wrapper.classList.contains('expanded');
+            
+            if(isExpanded) {
+                btn.setAttribute('data-en', 'Collapse Journey');
+                btn.setAttribute('data-pl', 'Zwiń historię');
+            } else {
+                btn.setAttribute('data-en', 'Expand Journey');
+                btn.setAttribute('data-pl', 'Rozwiń historię');
+            }
+            
+            // Re-apply current language to button
+            const currentLang = document.getElementById('btn-en').classList.contains('active') ? 'en' : 'pl';
+            btn.innerText = btn.getAttribute(`data-${currentLang}`);
+        }
+
+        function toggleMenu() {
+            document.getElementById('nav-links').classList.toggle('active');
+        }
+
+        // SCROLL CAROUSEL (Arrows)
+        function scrollCarousel(button, direction) {
+            const container = button.parentElement;
+            const carousel = container.querySelector('.timeline-carousel');
+            const scrollAmount = carousel.offsetWidth; 
+            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // CLOSE MODAL
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
+
+        // INIT CAROUSEL DOTS & MODAL INTERACTIONS
+        function initCarouselsAndModals() {
+            const containers = document.querySelectorAll('.carousel-container');
+            
+            containers.forEach(container => {
+                const carousel = container.querySelector('.timeline-carousel');
+                const images = carousel.querySelectorAll('img');
+                
+                // Create dots container
+                const dotsContainer = document.createElement('div');
+                dotsContainer.className = 'carousel-dots';
+                
+                images.forEach((img, index) => {
+                    // Generate Dots
+                    const dot = document.createElement('div');
+                    dot.className = 'dot' + (index === 0 ? ' active' : '');
+                    dot.addEventListener('click', () => {
+                        const scrollAmount = carousel.offsetWidth;
+                        carousel.scrollTo({ left: index * scrollAmount, behavior: 'smooth' });
+                    });
+                    dotsContainer.appendChild(dot);
+                    
+                    // Attach Lightbox click event to Image
+                    img.addEventListener('click', () => {
+                        const modal = document.getElementById('image-modal');
+                        const modalImg = document.getElementById('modal-img');
+                        // Load a higher res version of the unsplash placeholder
+                        const highResSrc = img.src.replace('&w=600', '&w=1200');
+                        modalImg.src = highResSrc;
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                    });
+                });
+                
+                container.appendChild(dotsContainer);
+                
+                // Sync dots on scroll
+                carousel.addEventListener('scroll', () => {
+                    const scrollPos = carousel.scrollLeft;
+                    const width = carousel.offsetWidth;
+                    const activeIndex = Math.round(scrollPos / width);
+                    
+                    const dots = dotsContainer.querySelectorAll('.dot');
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === activeIndex);
+                    });
+                });
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape') closeModal();
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize dots and lightboxes
+            initCarouselsAndModals();
+
+            // Intersection Observer for Scroll Spy (Active Navigation Links)
+            // Added #home so the top section highlights the Home link
+            const sections = document.querySelectorAll(".page-segment, #home");
+            const navLinks = document.querySelectorAll(".nav-links li a");
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "-20% 0px -60% 0px", // Triggers when the section reaches top 20% of viewport
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach((link) => {
+                            link.classList.remove("active-nav");
+                            if (link.getAttribute("href") === "#" + entry.target.id) {
+                                link.classList.add("active-nav");
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach((section) => {
+                observer.observe(section);
+            });
+        });
     </script>
 </body>
 </html>
