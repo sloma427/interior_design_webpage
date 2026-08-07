@@ -1,33 +1,44 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RD Studio | Yacht &amp; Interior Design</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
         
         :root {
-            /* Paleta kolorów z księgi znaku */
-            --color-slate-dark: #53606D;
-            --color-slate-light: #6B7786;
-            --color-taupe: #A7A2A1;
-            --color-sand: #F1E9DB;
-            --color-gold: #C4AA6B;
+            /* Paleta kolorów z referencji */
+            --color-sea-mist: #8DA0A9;       /* Mgła Morska */
+            --color-pearl-white: #F4F2ED;   /* Perłowa Biel */
+            --color-coastal-sand: #DCCBB5;  /* Piasek Wybrzeża */
+            --color-taupe: #B8B1A5;         /* Szlachetna Taupe */
+            --color-champagne-gold: #B89647;/* Szampańskie Złoto */
+            --color-walnut-deep: #2A221E;    /* Orzech Głęboki (ciemny tekst) */
+            --color-walnut-soft: #6B4F3A;    /* Męski akcent orzecha */
             
-            /* Szkło dopasowane do kolorystyki */
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(196, 170, 107, 0.25);
-            --glass-blur: blur(28px);
-            --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
+            /* Jasne, mleczne szkło (Light Glassmorphism) */
+            --glass-bg: rgba(244, 242, 237, 0.2);
+            --glass-border: rgba(184, 150, 71, 0.35);
+            --glass-blur: blur(15px);
+            --glass-shadow: 0 15px 35px 0 rgba(141, 160, 169, 0.18), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
             
-            --text-main: #ffffff;
-            --text-light: #A7A2A1;
-            --accent: #C4AA6B; 
+            --text-main: #2A221E;
+            --text-light: #5A544F;
+            --accent: #B89647; 
             
             --grid-gap: 30px;
             --panel-radius: 24px; 
         }
         
-        html { background-color: #0c0c11; scroll-behavior: smooth; }
+        html { 
+            /* STATYCZNE TŁO OBRAZKOWE Z NAKŁADKĄ DLA CZYTELNOŚCI */
+            background-image: linear-gradient(to right,rgba(244, 242, 237, 0.8), rgba(244, 242, 237, 0.0)), url('./index_files/background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Tło stoi w miejscu, treść się przewija */
+            scroll-behavior: smooth; 
+        }
         body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
         /* --- EKRAN ŁADOWANIA (LOADING SCREEN) --- */
@@ -37,7 +48,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: var(--color-slate-light);
+            background-color: var(--color-pearl-white);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -59,7 +70,6 @@
             text-align: center;
         }
 
-        /* Kontener ukrywający czarny obrazek i wycinający wyłącznie złote logo */
         .loader-logo-wrapper {
             height: 110px;
             overflow: hidden;
@@ -75,18 +85,17 @@
             height: 110px;
             width: auto;
             object-fit: contain;
-            /* Czysty złoty odcień bez czarnego tła */
-            filter: drop-shadow(0px -180px 0px var(--color-gold));
+            filter: drop-shadow(0px -180px 0px var(--color-champagne-gold));
             transform: translateY(180px);
         }
 
         .loader-title {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
+            font-weight: 400;
             font-size: 15px;
             letter-spacing: 9px;
             text-transform: uppercase;
-            color: var(--color-sand);
+            color: var(--color-walnut-deep);
             margin-top: 20px;
             margin-right: -9px;
             opacity: 0;
@@ -101,7 +110,7 @@
             font-style: normal;
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: var(--color-gold);
+            color: var(--color-champagne-gold);
             margin-top: 12px;
             margin-right: -5px;
             opacity: 0;
@@ -116,22 +125,13 @@
             }
         }
 
-        /* Hardware Accelerated Background */
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(rgba(12, 16, 22, 0.55), rgba(12, 16, 22, 0.85)), url('./index_files/background.png') center/cover no-repeat;
-            z-index: -2;
-            will-change: transform; 
-            transform: translateZ(0); 
-        }
-
         /* --- TOP LOGO SECTION --- */
         .top-logo-container {
-            position: fixed;
-            top: 40px;
-            left: 40px;
-            z-index: 2000;
+            padding: 60px 0 20px 0;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
         
         .top-logo-container a {
@@ -159,25 +159,25 @@
             height: 55px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px -100px 0px var(--color-gold));
+            filter: drop-shadow(0px -100px 0px var(--color-champagne-gold));
             transform: translateY(100px);
         }
 
         .top-logo-text {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
+            font-weight: 400;
             font-size: 11px;
             letter-spacing: 6px;
             text-transform: uppercase;
-            color: var(--color-sand);
+            color: var(--color-walnut-deep);
             margin-right: -6px;
         }
         
-        h1, h2, .editorial-header { font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 20px; color: var(--color-sand); }
-        h3, h4 { font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; }
+        h1, h2, .editorial-header { font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 20px; color: var(--color-walnut-deep); }
+        h3, h4 { font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; color: var(--color-walnut-deep); }
         a { text-decoration: none; color: inherit; }
 
-        /* --- VERTICAL DOT NAVIGATION (Desktop Right Side) --- */
+        /* --- VERTICAL DOT NAVIGATION --- */
         .main-nav { 
             position: fixed; 
             top: 50%; 
@@ -215,9 +215,9 @@
             align-items: center;
             justify-content: flex-end;
             gap: 15px;
-            color: var(--text-light);
+            color: var(--color-walnut-deep);
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -228,13 +228,14 @@
             transform: translateX(10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: none;
-            background: rgba(12, 16, 22, 0.85);
-            padding: 4px 10px;
+            background: rgba(42, 34, 30, 0.88);
+            padding: 5px 12px;
             border-radius: 4px;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(5px);
+            border: 1px solid var(--color-champagne-gold);
+            backdrop-filter: blur(8px);
             white-space: nowrap;
-            color: var(--color-sand);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
         
         .nav-links li a::after {
@@ -242,8 +243,9 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background-color: rgba(196, 170, 107, 0.4);
-            border: 1px solid var(--color-gold);
+            background-color: var(--color-walnut-deep);
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
             flex-shrink: 0;
@@ -254,61 +256,91 @@
             transform: translateX(0);
         }
         .nav-links li:hover a::after {
-            background-color: var(--color-gold);
+            background-color: var(--color-champagne-gold);
+            border-color: #ffffff;
             transform: scale(1.3);
         }
         
         .nav-links li a.active-nav::after {
-            background-color: var(--color-gold);
-            border-color: var(--color-gold);
+            background-color: var(--color-champagne-gold);
+            border-color: #ffffff;
             transform: scale(1.6);
-            box-shadow: 0 0 10px rgba(196, 170, 107, 0.6);
+            box-shadow: 0 0 10px rgba(184, 150, 71, 0.9), 0 2px 6px rgba(0,0,0,0.3);
         }
 
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: var(--color-gold); transition: 0.3s; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: var(--color-champagne-gold); transition: 0.3s; }
 
-        .btn { display: inline-block; background-color: transparent; border: 1px solid var(--color-gold); color: var(--color-sand); padding: 14px 30px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 50px; font-family: 'Montserrat', sans-serif;} 
-        .btn:hover { background-color: var(--color-gold); color: #0c0c11; transform: translateY(-1px);}
+        .btn { display: inline-block; background-color: rgba(255, 255, 255, 0.5); border: 1px solid var(--color-champagne-gold); color: var(--color-walnut-deep); padding: 14px 30px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 50px; font-family: 'Montserrat', sans-serif;} 
+        .btn:hover { background-color: var(--color-champagne-gold); color: #ffffff; transform: translateY(-1px);}
 
-        /* Glass panels */
-        .glass-panel { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 50px; box-sizing: border-box; will-change: transform, backdrop-filter; }
+        .glass-panel { 
+            background: var(--glass-bg); 
+            backdrop-filter: var(--glass-blur); 
+            -webkit-backdrop-filter: var(--glass-blur); 
+            border: 1px solid var(--glass-border); 
+            border-radius: var(--panel-radius); 
+            box-shadow: var(--glass-shadow); 
+            padding: 50px; 
+            box-sizing: border-box; 
+            will-change: transform, backdrop-filter; 
+        }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 100px 0 40px; box-sizing: border-box; }
 
-        .hero { height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); padding-top: 20px; box-sizing: border-box;}
+        .hero { height: auto; min-height: 80vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); padding: 20px 0 60px 0; box-sizing: border-box;}
         .hero-title-box { grid-column: 1 / span 1; text-align: left; max-width: 650px; padding-right: 50px;}
         .hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; }
-        .hero p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 35px; max-width: 85%; font-weight: 300; }
+        .hero p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 35px; max-width: 85%; font-weight: 400; }
 
-        .page-segment { padding: 100px 0; scroll-margin-top: 40px; }
+        .page-segment { padding: 80px 0; scroll-margin-top: 40px; }
         .philosophy { text-align: left; display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--grid-gap); align-items: center;}
         .philosophy-text h2 { font-size: 3rem; margin-top: 0; }
-        .philosophy-text p { font-size: 1.05rem; color: var(--text-light); line-height: 1.8; font-weight: 300; }
+        .philosophy-text p { font-size: 1.05rem; color: var(--text-light); line-height: 1.8; font-weight: 400; }
         .philosophy-image img { width: 100%; height: 500px; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
 
         .services-header { text-align: center; margin-bottom: 60px; }
         .services-header h2 { font-size: 3rem; margin-bottom: 15px; }
-        .services-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem; font-weight: 300; }
+        .services-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem; font-weight: 400; }
         
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--grid-gap); margin-bottom: 80px; }
         .service-card { border-radius: var(--panel-radius); border: 1px solid var(--glass-border); overflow: hidden; display: flex; flex-direction: column; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); box-shadow: var(--glass-shadow); transition: transform 0.3s ease, border-color 0.3s ease; }
-        .service-card:hover { transform: translateY(-5px); border-color: var(--color-gold); }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--color-champagne-gold); }
         .service-card img { width: 100%; height: 260px; object-fit: cover; border-bottom: 1px solid var(--glass-border); }
         .service-card-text { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
-        .service-card-text h3 { margin-top: 0; margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 1.6rem; text-transform: none; letter-spacing: 0; color: var(--color-sand); }
-        .service-card-text p { margin: 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.6; font-weight: 300; }
+        .service-card-text h3 { margin-top: 0; margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 1.6rem; text-transform: none; letter-spacing: 0; color: var(--color-walnut-deep); }
+        .service-card-text p { margin: 0; font-size: 0.95rem; color: var(--text-light); line-height: 1.6; font-weight: 400; }
 
-        /* Timeline styling */
+        /* --- TIMELINE STYLING Z POPRAWNĄ MASKĄ ALPHA --- */
         .timeline-section { text-align: center; }
         .timeline-header { text-align: center; margin-bottom: 60px; }
         .timeline-header h2 { font-size: 3rem; margin-bottom: 15px; }
-        .timeline-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem; font-weight: 300; }
+        .timeline-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem; font-weight: 400; }
         
-        .timeline-wrapper { position: relative; max-height: 850px; overflow: hidden; transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 40px; }
-        .timeline-wrapper.expanded { max-height: 6000px; }
-        .timeline-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 250px; background: linear-gradient(transparent, rgba(12, 12, 17, 1)); transition: opacity 0.4s; pointer-events: none; z-index: 2; }
-        .timeline-wrapper.expanded .timeline-overlay { opacity: 0; }
+        /* Prawdziwe zanikanie alpha w CSS bez czarnego tła */
+        .timeline-wrapper { 
+            position: relative; 
+            max-height: 850px; 
+            overflow: hidden; 
+            transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1); 
+            margin-bottom: 40px; 
+            
+            /* Stosujemy maskę alpha bezpośrednio na kontenerze */
+            -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+        }
+        
+        .timeline-wrapper.expanded { 
+            max-height: 6000px; 
+            /* Wyłączamy maskę po rozwinięciu całej osi */
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+        
+        /* Usunięto podkładkę timeline-overlay powodującą czarne tło */
+        .timeline-overlay { 
+            display: none; 
+        }
         
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding-bottom: 40px;}
         .timeline::after { content: ''; position: absolute; width: 1px; background: var(--glass-border); top: 0; bottom: 0; left: 50%; margin-left: -0.5px; z-index: 0; }
@@ -323,15 +355,15 @@
             }
         }
 
-        .timeline-item::after { content: ''; position: absolute; width: 14px; height: 14px; background-color: var(--color-gold); border-radius: 50%; top: 30px; z-index: 1; box-shadow: 0 0 10px rgba(196, 170, 107, 0.5); }
+        .timeline-item::after { content: ''; position: absolute; width: 14px; height: 14px; background-color: var(--color-champagne-gold); border-radius: 50%; top: 30px; z-index: 1; box-shadow: 0 0 10px rgba(184, 150, 71, 0.5); }
         .timeline-item:nth-child(odd)::after { right: -7px; }
         .timeline-item:nth-child(even)::after { left: -7px; }
         
         .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease; will-change: transform;}
-        .timeline-card:hover { transform: translateY(-5px); border-color: var(--color-gold); }
-        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-gold); margin-bottom: 10px; }
-        .timeline-card h3 { font-size: 1.15rem; margin: 0 0 10px 0; color: var(--color-sand); font-family: 'Montserrat', sans-serif; font-weight: 500; }
-        .timeline-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; font-weight: 300; }
+        .timeline-card:hover { transform: translateY(-5px); border-color: var(--color-champagne-gold); }
+        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-champagne-gold); margin-bottom: 10px; }
+        .timeline-card h3 { font-size: 1.15rem; margin: 0 0 10px 0; color: var(--color-walnut-deep); font-family: 'Montserrat', sans-serif; font-weight: 600; }
+        .timeline-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; font-weight: 400; }
 
         /* STRICT INTERACTIVE CAROUSEL */
         .carousel-container { position: relative; margin-top: 20px; border-radius: 12px; overflow: hidden; transform: translateZ(0); }
@@ -349,22 +381,15 @@
         }
         .timeline-carousel img:hover { transform: scale(1.02); }
         
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); color: var(--color-sand); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: 0.3s; font-size: 14px;}
-        .carousel-btn:hover { background: var(--color-gold); color: #000; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(244, 242, 237, 0.8); border: 1px solid var(--glass-border); color: var(--color-walnut-deep); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: 0.3s; font-size: 14px;}
+        .carousel-btn:hover { background: var(--color-champagne-gold); color: #fff; }
         .carousel-btn.prev { left: 10px; }
         .carousel-btn.next { right: 10px; }
 
         /* CAROUSEL DOTS */
         .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
-        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-        .dot.active { background: var(--color-gold); transform: scale(1.3); }
-
-        /* MODAL / LIGHTBOX */
-        .modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.92); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.3s ease; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); cursor: zoom-out;}
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content { max-width: 90%; max-height: 90vh; border-radius: var(--panel-radius); box-shadow: 0 10px 50px rgba(0,0,0,0.6); object-fit: contain; cursor: default;}
-        .modal-close { position: absolute; top: 30px; right: 40px; color: var(--color-sand); font-size: 40px; font-weight: 300; cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif;}
-        .modal-close:hover { color: var(--color-gold); transform: scale(1.1); }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(42, 34, 30, 0.25); cursor: pointer; transition: 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .dot.active { background: var(--color-champagne-gold); transform: scale(1.3); }
 
         /* About Us Section */
         .about-combination { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grid-gap); align-items: stretch; margin-top: 40px;}
@@ -374,16 +399,16 @@
         
         .about-text { justify-content: center; display: flex; flex-direction: column; align-items: flex-start; }
         .about-text h2 { font-size: 3rem; margin-top: 0; }
-        .about-text p { font-weight: 300; }
+        .about-text p { font-weight: 400; color: var(--text-light); }
         .about-text .btn { margin-top: 15px; }
         
-        .designer-signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--color-gold); margin-top: 30px; opacity: 0.95; }
+        .designer-signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--color-champagne-gold); margin-top: 30px; opacity: 0.95; }
 
         .final-call { max-width: 900px; margin: 120px auto 60px; text-align: center; }
         .final-call h2 { font-size: 4rem; letter-spacing: -1px; margin-bottom: 10px; }
-        .final-call p { color: var(--text-light); margin-bottom: 60px; font-size: 1.15rem; font-weight: 300; }
+        .final-call p { color: var(--text-light); margin-bottom: 60px; font-size: 1.15rem; font-weight: 400; }
         
-        /* Formularz dopasowany do kolorystyki */
+        /* Formularz dopasowany do jasnej kolorystyki */
         .contact-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         
@@ -391,26 +416,26 @@
             width: 100%; 
             padding: 18px; 
             border: 1px solid var(--glass-border); 
-            background: rgba(83, 96, 109, 0.25); 
+            background: rgba(255, 255, 255, 0.65); 
             border-radius: 16px; 
             font-family: 'Montserrat', sans-serif; 
             font-size: 14px; 
-            color: var(--color-sand); 
+            color: var(--color-walnut-deep); 
             box-sizing: border-box; 
             transition: 0.3s; 
             backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
         }
         .contact-form input::placeholder, .contact-form textarea::placeholder {
-            color: var(--color-taupe);
+            color: var(--color-sea-mist);
         }
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { 
             outline: none; 
-            border-color: var(--color-gold); 
-            background: rgba(83, 96, 109, 0.4); 
+            border-color: var(--color-champagne-gold); 
+            background: rgba(255, 255, 255, 0.9); 
         }
-        .contact-form select { background-color: rgba(30, 36, 45, 0.95); color: var(--color-sand); }
-        .contact-form select option { background: #1a2029; color: var(--color-sand); }
+        .contact-form select { background-color: rgba(244, 242, 237, 0.95); color: var(--color-walnut-deep); }
+        .contact-form select option { background: #F4F2ED; color: var(--color-walnut-deep); }
         .contact-form textarea { min-height: 150px; resize: none; border-radius: 16px; }
         .contact-form .btn { 
             width: 100%; 
@@ -419,15 +444,16 @@
             border-radius: 50px; 
             font-size: 12px; 
             font-weight: 600; 
-            background-color: var(--color-gold); 
-            color: #0c0c11; 
+            background-color: var(--color-champagne-gold); 
+            color: #ffffff; 
             border: none;
             transition: 0.3s ease;
         }
-        .contact-form .btn:hover { background-color: var(--color-sand); color: #0c0c11; }
+        .contact-form .btn:hover { background-color: var(--color-walnut-deep); color: #ffffff; }
 
         @media (max-width: 1200px) {
-            .hero { grid-template-columns: 1fr; padding-top: 100px;}
+            .hero { grid-template-columns: 1fr; padding-top: 20px;}
+            .top-logo-container { padding-top: 40px; }
             .hero-title-box { padding-right: 0; max-width: 100%;}
             .philosophy, .services-grid, .about-combination, .form-row { grid-template-columns: 1fr !important; }
             .philosophy-image img { height: 400px; }
@@ -441,49 +467,29 @@
             .container { padding: 0 20px; }
             .page-segment { scroll-margin-top: 40px; padding: 60px 0; }
             
-            .top-logo-container {
-                top: 25px;
-                left: 20px;
-            }
-            .top-logo-wrapper {
-                height: 45px;
-            }
+            .top-logo-container { padding-top: 40px; }
+            .top-logo-wrapper { height: 45px; }
             .top-logo-img {
                 height: 45px;
-                filter: drop-shadow(0px -80px 0px var(--color-gold));
+                filter: drop-shadow(0px -80px 0px var(--color-champagne-gold));
                 transform: translateY(80px);
             }
 
-            .loader-logo-wrapper {
-                height: 85px;
-            }
+            .loader-logo-wrapper { height: 85px; }
             .loader-logo-img {
                 height: 85px;
-                filter: drop-shadow(0px -140px 0px var(--color-gold));
+                filter: drop-shadow(0px -140px 0px var(--color-champagne-gold));
                 transform: translateY(140px);
             }
 
-            .nav-brand { display: none; }
-            
             .main-nav { 
-                position: fixed; 
                 top: 25px; 
                 right: 25px;
-                left: auto;
                 transform: none; 
-                width: auto; 
-                height: auto;
-                background: transparent;
-                border: none;
-                box-shadow: none;
-                padding: 0;
                 z-index: 2500;
             }
             
             .nav-controls { 
-                display: flex; 
-                align-items: center; 
-                justify-content: center;
                 background: var(--glass-bg);
                 backdrop-filter: var(--glass-blur);
                 -webkit-backdrop-filter: var(--glass-blur);
@@ -492,6 +498,7 @@
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
+                display: flex;
             }
             
             .hamburger { display: flex; }
@@ -502,21 +509,17 @@
                 left: 0; 
                 width: 100vw; 
                 height: 100vh;
-                background: rgba(12, 16, 22, 0.97); 
+                background: rgba(244, 242, 237, 0.97); 
                 backdrop-filter: blur(30px); 
                 -webkit-backdrop-filter: blur(30px);
                 flex-direction: column; 
                 justify-content: center;
                 align-items: center;
-                padding: 0; 
                 max-height: 0; 
                 opacity: 0;
                 visibility: hidden;
                 overflow: hidden; 
                 transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s linear 0.4s; 
-                border: none;
-                box-shadow: none;
-                gap: 25px;
             }
             .nav-links.active { 
                 max-height: 100vh; 
@@ -524,69 +527,19 @@
                 visibility: visible;
                 transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s linear 0s;
             }
-            .nav-links li { margin: 0; width: auto; justify-content: center; }
-            .nav-links li a { gap: 0; text-align: center; width: auto; justify-content: center; font-size: 16px; letter-spacing: 3px; }
-            
-            .nav-links li a span.nav-title { opacity: 1 !important; transform: none !important; background: transparent; padding: 0; border: none; }
+            .nav-links li a span.nav-title { opacity: 1 !important; transform: none !important; background: transparent; padding: 0; border: none; color: var(--color-walnut-deep); }
             .nav-links li a::after { display: none !important; }
             
-            .nav-links li a:hover, .nav-links li a.active-nav { color: var(--color-gold); border-bottom: 2px solid var(--color-gold); padding-bottom: 4px; background: transparent; }
-            
             .glass-panel { padding: 30px; border-radius: 16px; }
-            .hero h1 { font-size: 2.2rem; word-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; line-height: 1.2; }
-            .hero p { font-size: 1rem; }
-            
+            .hero h1 { font-size: 2.2rem; }
             .philosophy-text h2, .services-header h2, .about-text h2, .timeline-header h2 { font-size: 2.2rem; }
             .final-call h2 { font-size: 2.5rem; }
-            .designer-signature { font-size: 2.5rem; }
-
-            .timeline::after { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; left: 0 !important; text-align: left !important; margin-top: 0 !important; }
-            .timeline-item::after { left: 13px !important; top: 30px; }
-            
-            .about-combination { 
-                grid-template-columns: 1fr !important; 
-                gap: 25px; 
-                padding: 0 !important;
-                background: transparent !important;
-                border: none !important;
-                box-shadow: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-            }
-            .about-images { 
-                grid-template-columns: 1fr 1fr !important;
-                gap: 15px; 
-                width: 100%;
-            }
-            .about-images img { 
-                height: auto;
-                aspect-ratio: 9 / 22;
-                min-height: auto;
-                max-height: none;
-                border-radius: var(--panel-radius);
-            }
-            .about-text { 
-                background: var(--glass-bg); 
-                backdrop-filter: var(--glass-blur); 
-                -webkit-backdrop-filter: var(--glass-blur); 
-                border: 1px solid var(--glass-border); 
-                border-radius: var(--panel-radius); 
-                box-shadow: var(--glass-shadow);
-                padding: 30px;
-                box-sizing: border-box;
-                width: 100%;
-            }
-            .about-text h2 { font-size: 2rem; margin-bottom: 15px; }
-            .about-text p { font-size: 0.95rem; line-height: 1.6; }
-            .about-text .btn { display: inline-block; margin-top: 20px; }
-            .designer-signature { font-size: 2.5rem; margin-top: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- EKRAN ŁADOWANIA (JEDNO CZYSTE ZŁOTE LOGO) -->
+    <!-- EKRAN ŁADOWANIA -->
     <div id="loader">
         <div class="loader-content">
             <div class="loader-logo-wrapper">
@@ -597,20 +550,16 @@
         </div>
     </div>
 
-    <!-- TOP LOGO SECTION Z CZYSTYM ZŁOTYM CIEŃM -->
-    <div class="top-logo-container">
-        <a href="#home">
-            <div class="top-logo-wrapper">
-                <img src="./index_files/logo.png" alt="RD Studio Logo" class="top-logo-img">
-            </div>
-            <div class="top-logo-text">STUDIO</div>
-        </a>
-    </div>
-    
     <!-- RESPONSIVE DOT NAVIGATION -->
     <nav class="main-nav">
         <div class="nav-brand">RD Studio</div>
-        
+        <div class="nav-controls">
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
         <ul class="nav-links" id="nav-links">
             <li><a href="#home" class="active-nav"><span class="nav-title">Home</span></a></li>
             <li><a href="#philosophy"><span class="nav-title">Philosophy</span></a></li>
@@ -619,17 +568,19 @@
             <li><a href="#about"><span class="nav-title">About Us</span></a></li>
             <li><a href="#contact"><span class="nav-title">Contact</span></a></li>
         </ul>
-
-        <div class="nav-controls">
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
     </nav>
 
     <div class="container">
+        <!-- TOP LOGO SECTION (ZNIKA PRZY SCROLLU) -->
+        <div class="top-logo-container" id="home_logo">
+            <a href="#home">
+                <div class="top-logo-wrapper">
+                    <img src="./index_files/logo.png" alt="RD Studio Logo" class="top-logo-img">
+                </div>
+                <div class="top-logo-text">STUDIO</div>
+            </a>
+        </div>
+
         <header id="home" class="hero page-segment">
             <div class="hero-title-box">
                 <h1>Uncompromising Scale. Private Luxury.</h1>
@@ -650,7 +601,7 @@
             </div>
         </section>
 
-        <section id="services" class="page-segment" style="padding-top: 40px;">
+        <section id="services" class="page-segment">
             <div class="services-header">
                 <h2>Bespoke Commissions</h2>
                 <p>We accept a select number of private residential and maritime commissions per year, ensuring absolute dedication to realizing your unique vision.</p>
@@ -683,7 +634,6 @@
             </div>
         </section>
 
-        <!-- Collapsible Timeline Section (ODWRÓCONA KOLEJNOŚĆ - NAJNOWSZE NA GÓRZE) -->
         <section id="journey" class="timeline-section page-segment">
             <div class="timeline-header">
                 <h2>Our Professional Journey</h2>
@@ -693,7 +643,6 @@
             <div class="timeline-wrapper" id="timeline-wrapper">
                 <div class="timeline">
                     
-                    <!-- Point 1: 2023 – Present -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2023 – Present</div>
@@ -703,15 +652,14 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1616486338812-3dadae4b4ace" alt="River Cruise 1" loading="lazy" data-index="0">
-                                    <img src="./index_files/photo-1600607687939-ce8a6c25118c" alt="River Cruise 2" loading="lazy" data-index="1">
+                                    <img src="./index_files/photo-1616486338812-3dadae4b4ace" alt="River Cruise 1" loading="lazy">
+                                    <img src="./index_files/photo-1600607687939-ce8a6c25118c" alt="River Cruise 2" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
-                            <div class="carousel-dots"><div class="dot active"></div><div class="dot"></div></div></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Point 2: 2021 – 2023 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2021 – 2023</div>
@@ -721,15 +669,14 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1604014237800-1c9102c219da" alt="Disney Wish 1" loading="lazy" data-index="0">
-                                    <img src="./index_files/photo-1567401893414-76b7b1e5a7a5" alt="Disney Wish 2" loading="lazy" data-index="1">
+                                    <img src="./index_files/photo-1604014237800-1c9102c219da" alt="Disney Wish 1" loading="lazy">
+                                    <img src="./index_files/photo-1567401893414-76b7b1e5a7a5" alt="Disney Wish 2" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
-                            <div class="carousel-dots"><div class="dot active"></div><div class="dot"></div></div></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Point 3: 2020 – 2021 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2020 – 2021</div>
@@ -738,7 +685,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 4: 2018 – 2020 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2018 – 2020</div>
@@ -747,7 +693,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 5: 2014 – 2017 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2014 – 2017</div>
@@ -757,16 +702,15 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1599619351208-3e6c839d6828" alt="NCL Project 1" loading="lazy" data-index="0">
-                                    <img src="./index_files/photo-1569336415962-a4bd9f69cd83" alt="NCL Project 2" loading="lazy" data-index="1">
-                                    <img src="./index_files/photo-1505693416388-ac5ce068fe85" alt="NCL Project 3" loading="lazy" data-index="2">
+                                    <img src="./index_files/photo-1599619351208-3e6c839d6828" alt="NCL Project 1" loading="lazy">
+                                    <img src="./index_files/photo-1569336415962-a4bd9f69cd83" alt="NCL Project 2" loading="lazy">
+                                    <img src="./index_files/photo-1505693416388-ac5ce068fe85" alt="NCL Project 3" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
-                            <div class="carousel-dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Point 6: 2002 – 2014 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2002 – 2014</div>
@@ -775,7 +719,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 7: 1998 – 2001 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">1998 – 2001</div>
@@ -785,15 +728,14 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1600596542815-ffad4c1539a9" alt="Cruise Project 1" loading="lazy" data-index="0">
-                                    <img src="./index_files/photo-1600585154340-be6161a56a0c" alt="Cruise Project 2" loading="lazy" data-index="1">
+                                    <img src="./index_files/photo-1600596542815-ffad4c1539a9" alt="Cruise Project 1" loading="lazy">
+                                    <img src="./index_files/photo-1600585154340-be6161a56a0c" alt="Cruise Project 2" loading="lazy">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
-                            <div class="carousel-dots"><div class="dot active"></div><div class="dot"></div></div></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Point 8: 1994 – 1998 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">1994 – 1998</div>
@@ -802,7 +744,6 @@
                         </div>
                     </div>
 
-                    <!-- Point 9: 1992 – 1994 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">1992 – 1994</div>
@@ -812,17 +753,15 @@
                     </div>
 
                 </div>
-                <div class="timeline-overlay"></div>
             </div>
             
             <button id="toggle-timeline-btn" class="btn" onclick="toggleTimeline()">Expand Journey</button>
         </section>
 
-        <!-- About Us Section -->
         <section id="about" class="about-combination page-segment">
             <div class="about-images">
-                <img src="./index_files/photo-1580489944761-15a19d654956" alt="Founder One" loading="lazy">
-                <img src="./index_files/photo-1507003211169-0a1dd7228f2d" alt="Founder Two" loading="lazy">
+                <img src="./index_files/founder1.png" alt="Founder One" loading="lazy">
+                <img src="./index_files/founder2.png" alt="Founder Two" loading="lazy">
             </div>
             <div class="glass-panel about-text">
                 <h2>Mastery of Scale &amp; Detail</h2>
@@ -858,14 +797,7 @@
         </footer>
     </div>
 
-    <!-- LIGHTBOX MODAL -->
-    <div id="image-modal" class="modal" onclick="closeModal()">
-        <span class="modal-close">×</span>
-        <img id="modal-img" class="modal-content" src="https://sloma427.github.io/interior_design_webpage/" alt="Detailed View" onclick="event.stopPropagation()">
-    </div>
-
     <script>
-        // LOKALNY SKRYPT OBSŁUGUJĄCY SCREEN ŁADOWANIA
         window.addEventListener('load', function() {
             const loader = document.getElementById('loader');
             setTimeout(() => {
@@ -876,16 +808,8 @@
         function toggleTimeline() {
             const wrapper = document.getElementById('timeline-wrapper');
             const btn = document.getElementById('toggle-timeline-btn');
-            
             wrapper.classList.toggle('expanded');
-            
-            const isExpanded = wrapper.classList.contains('expanded');
-            
-            if(isExpanded) {
-                btn.innerText = 'Collapse Journey';
-            } else {
-                btn.innerText = 'Expand Journey';
-            }
+            btn.innerText = wrapper.classList.contains('expanded') ? 'Collapse Journey' : 'Expand Journey';
         }
 
         function toggleMenu() {
@@ -895,22 +819,8 @@
         function scrollCarousel(button, direction) {
             const container = button.parentElement;
             const carousel = container.querySelector('.timeline-carousel');
-            const images = Array.from(carousel.querySelectorAll('img'));
-            
             const itemWidth = carousel.clientWidth + 10; 
-            const currentIndex = Math.round(carousel.scrollLeft / itemWidth);
-            
-            let nextIndex = currentIndex + direction;
-            if (nextIndex < 0) nextIndex = 0;
-            if (nextIndex >= images.length) nextIndex = images.length - 1;
-
-            images[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('image-modal');
-            modal.classList.remove('active');
-            document.body.style.overflow = ''; 
+            carousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
         }
 
         document.querySelectorAll('.nav-links a').forEach(link => {
@@ -919,65 +829,8 @@
             });
         });
 
-        UX_initCarouselsAndModals = function() {
-            const containers = document.querySelectorAll('.carousel-container');
-            
-            containers.forEach(container => {
-                const carousel = container.querySelector('.timeline-carousel');
-                const images = carousel.querySelectorAll('img');
-                
-                const dotsContainer = document.createElement('div');
-                dotsContainer.className = 'carousel-dots';
-                
-                images.forEach((img, index) => {
-                    const dot = document.createElement('div');
-                    dot.className = 'dot' + (index === 0 ? ' active' : '');
-                    
-                    img.dataset.index = index;
-                    
-                    dot.addEventListener('click', () => {
-                        img.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    });
-                    dotsContainer.appendChild(dot);
-                    
-                    img.addEventListener('click', () => {
-                        const modal = document.getElementById('image-modal');
-                        const modalImg = document.getElementById('modal-img');
-                        const highResSrc = img.src.replace('&w=600', '&w=1200');
-                        modalImg.src = highResSrc;
-                        modal.classList.add('active');
-                        document.body.style.overflow = 'hidden'; 
-                    });
-                });
-                
-                container.appendChild(dotsContainer);
-                
-                const dotElements = dotsContainer.querySelectorAll('.dot');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const index = entry.target.dataset.index;
-                            dotElements.forEach(d => d.classList.remove('active'));
-                            if(dotElements[index]) dotElements[index].classList.add('active');
-                        }
-                    });
-                }, {
-                    root: carousel,
-                    threshold: 0.5 
-                });
-
-                images.forEach(img => observer.observe(img));
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if(e.key === 'Escape') closeModal();
-            });
-        }
-
         document.addEventListener("DOMContentLoaded", function() {
-            UX_initCarouselsAndModals();
-
-            const sections = document.querySelectorAll(".page-segment");
+            const sections = document.querySelectorAll(".page-segment, .top-logo-container");
             const navLinks = document.querySelectorAll(".nav-links li a");
 
             const observerOptions = {
@@ -994,6 +847,9 @@
                             if (link.getAttribute("href") === "#" + entry.target.id) {
                                 link.classList.add("active-nav");
                             }
+                            if (entry.target.classList.contains('top-logo-container') && link.getAttribute("href") === "#home") {
+                                link.classList.add("active-nav");
+                            }
                         });
                     }
                 });
@@ -1004,4 +860,5 @@
             });
         });
     </script>
-<div id="synofoto-browser-extension-loaded"></div></body></html>
+</body>
+</html>
