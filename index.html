@@ -8,21 +8,22 @@
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
         
         :root {
-            /* Nowa paleta kolorów z referencji */
+            /* Paleta kolorów */
             --color-sea-mist: #8DA0A9;       /* Mgła Morska */
             --color-pearl-white: #F4F2ED;   /* Perłowa Biel */
             --color-coastal-sand: #DCCBB5;  /* Piasek Wybrzeża */
             --color-taupe: #B8B1A5;         /* Szlachetna Taupe */
             --color-champagne-gold: #B89647;/* Wzmocnione Szampańskie Złoto */
+            --color-gold-bright: #E0C788;   /* Jasne złoto dla kontrastu w loaderze */
             
-            /* Zmiękczony, bardziej luksusowy ciemny tekst zamiast brutalnej czerni */
-            --color-walnut-deep: #332D29;    /* Ciepły, głęboki grafit */
+            /* Szlachetne odcienie tekstów */
+            --color-walnut-deep: #332D29;    /* Głęboki grafit */
             --color-walnut-soft: #544E4A;    /* Miękki odcień do opisów */
             
             /* Jasne, mleczne szkło (Light Glassmorphism) */
-            --glass-bg: rgba(244, 242, 237, 0.45);
+            --glass-bg: rgba(244, 242, 237, 0.1);
             --glass-border: rgba(184, 150, 71, 0.3);
-            --glass-blur: blur(15px);
+            --glass-blur: blur(25px);
             --glass-shadow: 0 15px 35px 0 rgba(141, 160, 169, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
             
             --text-main: var(--color-walnut-deep);
@@ -76,14 +77,14 @@
             pointer-events: none;
         }
 
-        /* --- EKRAN ŁADOWANIA (2X POWIĘKSZONE LOGO) --- */
+        /* --- EKRAN ŁADOWANIA (BŁĘKITNE TŁO + JASNE ZŁOTO) --- */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: var(--color-pearl-white);
+            background-color: var(--color-sea-mist);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -106,7 +107,7 @@
         }
 
         .loader-logo-wrapper {
-            height: 220px; /* Powiększone 2x (z 110px) */
+            height: 220px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -117,21 +118,21 @@
         }
 
         .loader-logo-img {
-            height: 220px; /* Powiększone 2x (z 110px) */
+            height: 220px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px -360px 0px var(--color-champagne-gold)); /* Przesunięcie cienia dopasowane do 2x wielkości */
+            filter: drop-shadow(0px -360px 0px var(--color-gold-bright));
             transform: translateY(360px);
         }
 
         .loader-title {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            font-size: 16px;
+            font-weight: 500;
+            font-size: 15px;
             letter-spacing: 9px;
             text-transform: uppercase;
-            color: var(--color-walnut-deep);
-            margin-top: 25px;
+            color: var(--color-gold-bright);
+            margin-top: -12px;
             margin-right: -9px;
             opacity: 0;
             transform: translateY(15px);
@@ -145,8 +146,8 @@
             font-style: normal;
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: var(--color-champagne-gold);
-            margin-top: 12px;
+            color: var(--color-pearl-white);
+            margin-top: 10px;
             margin-right: -5px;
             opacity: 0;
             transform: translateY(15px);
@@ -160,9 +161,9 @@
             }
         }
 
-        /* --- TOP LOGO SECTION (2X POWIĘKSZONE LOGO) --- */
+        /* --- TOP LOGO SECTION --- */
         .top-logo-container {
-            padding: 50px 0 20px 0;
+            padding: 60px 0 20px 0;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -173,7 +174,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 0px;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
@@ -183,7 +184,7 @@
         }
 
         .top-logo-wrapper {
-            height: 110px; /* Powiększone 2x (z 55px) */
+            height: 220px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -191,25 +192,38 @@
         }
 
         .top-logo-img {
-            height: 110px; /* Powiększone 2x (z 55px) */
+            height: 220px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px -200px 0px var(--color-champagne-gold));
-            transform: translateY(200px);
+            filter: drop-shadow(0px -360px 0px var(--color-champagne-gold));
+            transform: translateY(360px);
         }
 
         .top-logo-text {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            font-size: 13px;
-            letter-spacing: 7px;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            color: var(--color-walnut-deep);
-            margin-right: -7px;
+            color: var(--color-champagne-gold);
+            margin-top: -10px;
+            margin-right: -8px;
         }
         
-        h1, h2, .editorial-header { font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 20px; color: var(--color-walnut-deep); }
-        h3, h4 { font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.9rem; font-family: 'Montserrat', sans-serif; color: var(--color-walnut-deep); }
+        h1, h2, .editorial-header { 
+            font-family: 'Playfair Display', serif; 
+            font-weight: 400; 
+            margin-bottom: 20px; 
+            color: #5A4D3B; 
+        }
+        h3, h4 { 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            font-size: 0.9rem; 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--color-walnut-deep); 
+        }
         a { text-decoration: none; color: inherit; }
 
         /* --- VERTICAL DOT NAVIGATION (DESKTOP) --- */
@@ -388,7 +402,7 @@
         
         .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease; will-change: transform;}
         .timeline-card:hover { transform: translateY(-5px); border-color: var(--color-champagne-gold); }
-        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-champagne-gold); margin-bottom: 10px; }
+        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #5A4D3B; margin-bottom: 10px; }
         .timeline-card h3 { font-size: 1.15rem; margin: 0 0 10px 0; color: var(--color-walnut-deep); font-family: 'Montserrat', sans-serif; font-weight: 600; }
         .timeline-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; font-weight: 400; }
 
@@ -489,12 +503,11 @@
             .hero h1 { font-size: 3.5rem; }
         }
         
-        /* --- DEDYKOWANE POPRAWKI MOBILNE (< 768px oraz < 1024px) --- */
+        /* --- DEDYKOWANE POPRAWKI MOBILNE --- */
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
             .page-segment { padding: 45px 0; }
             
-            /* --- TIMELINE MOBILNY --- */
             .timeline {
                 padding-left: 20px;
                 padding-right: 0;
@@ -530,21 +543,20 @@
 
         @media (max-width: 1024px) { 
             .top-logo-container { padding-top: 30px; }
-            .top-logo-wrapper { height: 80px; } /* Skalowanie logo na mobilkach */
+            .top-logo-wrapper { height: 140px; }
             .top-logo-img {
-                height: 80px;
-                filter: drop-shadow(0px -150px 0px var(--color-champagne-gold));
-                transform: translateY(150px);
-            }
-
-            .loader-logo-wrapper { height: 140px; }
-            .loader-logo-img {
                 height: 140px;
                 filter: drop-shadow(0px -250px 0px var(--color-champagne-gold));
                 transform: translateY(250px);
             }
 
-            /* --- WYRÓWNANY PRZYCISK HAMBURGERA MOBILNEGO --- */
+            .loader-logo-wrapper { height: 140px; }
+            .loader-logo-img {
+                height: 140px;
+                filter: drop-shadow(0px -250px 0px var(--color-gold-bright));
+                transform: translateY(250px);
+            }
+
             .main-nav { 
                 top: 20px; 
                 right: 20px;
@@ -585,7 +597,6 @@
                 transition: 0.3s ease; 
             }
 
-            /* --- ELEGANCKIE, PREMIOWE MENU MOBILNE NA PEŁNY EKRAN --- */
             .nav-links { 
                 position: fixed; 
                 top: 0; 
@@ -660,7 +671,7 @@
         <div class="fixed-bg-overlay"></div>
     </div>
 
-    <!-- EKRAN ŁADOWANIA -->
+    <!-- EKRAN ŁADOWANIA (BŁĘKITNE TŁO + JASNE ZŁOTO) -->
     <div id="loader">
         <div class="loader-content">
             <div class="loader-logo-wrapper">
@@ -764,11 +775,21 @@
             <div class="timeline-wrapper" id="timeline-wrapper">
                 <div class="timeline">
                     
+                    <!-- Point 1: 2026 -->
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-year">2026</div>
+                            <h3>High-End Residential &amp; Bespoke Architecture</h3>
+                            <p>Delivered detailed architectural and interior drawing packages for ultra-luxury private residences. Focused on custom joinery, refined material finishes, and flawless technical execution for demanding private clients.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 2: 2023 – Present -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2023 – Present</div>
-                            <h3>Disney Adventure &amp; River Cruises</h3>
-                            <p>Project Manager &amp; FF&amp;E Coordinator for Disney Adventure across the entire ship. Managed FF&amp;E coordination for AmaWaterways (8 river cruise ships) and Holland America refits.</p>
+                            <h3>Disney Adventure, AmaWaterways &amp; MSC Fleet</h3>
+                            <p>Led end-to-end design development and project management for mega-vessels and river cruise ships. Managed FF&amp;E coordination for AmaWaterways (8 ships) and Holland America refits, alongside taking full ownership of signature onboard zones (SPA, specialty restaurants) and technical documentation for MSC Cruises.</p>
                             
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
@@ -781,11 +802,12 @@
                         </div>
                     </div>
 
+                    <!-- Point 3: 2018 – 2023 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
-                            <div class="timeline-year">2021 – 2023</div>
-                            <h3>Disney Cruise Line Fleet</h3>
-                            <p>Project Manager / Deputy PM for Disney Wish, Disney Treasure, and Disney Destiny. Directed crew areas, accommodation suites, and public spaces.</p>
+                            <div class="timeline-year">2018 – 2023</div>
+                            <h3>Disney Cruise Line Fleet (Wish, Treasure, Destiny)</h3>
+                            <p>Co-led the interior design and delivery process for three Disney Cruise Line newbuild vessels across a 5-year development cycle. Directed multidisciplinary teams of up to 20 designers, taking total ownership of the luxury cabins, suites, and public spaces scope—from early concepts and mock-up approvals to shipyard execution.</p>
                             
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
@@ -798,27 +820,30 @@
                         </div>
                     </div>
 
+                    <!-- Point 4: 2020 – 2021 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2020 – 2021</div>
                             <h3>Enchanted Princess</h3>
-                            <p>Project Manager overseeing public areas, lounges, bars, retail spaces, and photo shops. Coordinated overall design management with Tillberg team and shipyards.</p>
+                            <p>Directed project management and overall design coordination for public areas, luxury lounges, bars, and retail spaces, liaising directly with shipyard engineers and international stakeholders.</p>
                         </div>
                     </div>
 
+                    <!-- Point 5: 2017 – 2020 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
-                            <div class="timeline-year">2018 – 2020</div>
-                            <h3>P&amp;O Australia, Mein Schiff &amp; Hurtigruten</h3>
-                            <p>Deputy Project Manager &amp; Interior Designer. Managed design liaison between shipyard and clients. Designed lounges, restaurants, gyms, and spas for Mein Schiff and Hurtigruten fleet.</p>
+                            <div class="timeline-year">2017 – 2020</div>
+                            <h3>Ritz-Carlton Superyacht &amp; Fleet Designs</h3>
+                            <p>Developed bespoke interior design packages and technical drawings for guest suites onboard the ultra-luxury Ritz-Carlton Superyacht as well as newbuild cruise liners. Designed high-end lounges, specialty dining, wellness spas, and gyms for Mein Schiff and Hurtigruten fleets.</p>
                         </div>
                     </div>
 
+                    <!-- Point 6: 2014 – 2017 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2014 – 2017</div>
-                            <h3>Tillberg Design of Sweden</h3>
-                            <p>Interior Designer across Sweden, Poland, and Malta. Led accommodation &amp; public area designs for NCL Joy NewBuild, NCL Gem, NCL Epic, and NCL Sun refits.</p>
+                            <h3>Tillberg Design of Sweden &amp; Commercial Interiors</h3>
+                            <p>Interior designers across Sweden, Poland, and Malta. Led accommodation and public space design for Norwegian Cruise Line (NCL Joy, Gem, Epic, Sun refits) and developed technical documentation for upscale hospitality and restaurant concepts.</p>
                             
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
@@ -832,19 +857,21 @@
                         </div>
                     </div>
 
+                    <!-- Point 7: 2002 – 2014 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">2002 – 2014</div>
-                            <h3>Business Venture &amp; Family</h3>
-                            <p>Co-founded and successfully managed an opticians business while raising two children, broadening management and client relations expertise.</p>
+                            <h3>Business Venture &amp; Client Relations</h3>
+                            <p>Co-founded and successfully managed an opticians business while raising two children, broadening strategic management, client relations, and operational expertise.</p>
                         </div>
                     </div>
 
+                    <!-- Point 8: 1998 – 2001 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">1998 – 2001</div>
-                            <h3>Designteam London</h3>
-                            <p>Project Manager for Royal Caribbean International (Radiance of the Seas &amp; Brilliance of the Seas). Managed retail areas, cafés, and photo galleries.</p>
+                            <h3>Royal Caribbean International (Designteam London)</h3>
+                            <p>Project Management for Radiance of the Seas &amp; Brilliance of the Seas. Overseeing design intent and execution for retail environments, cafés, and onboard public galleries.</p>
                             
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
@@ -857,19 +884,21 @@
                         </div>
                     </div>
 
+                    <!-- Point 9: 1994 – 1998 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">1994 – 1998</div>
-                            <h3>Tillberg Design / SMC Design</h3>
-                            <p>Interior Designer (Sweden &amp; London). Designed accommodation areas for Costa Victoria and Star Cruises (Superstar Leo, Virgo, Scorpio). Created public areas (Bistro, Casino) for NCL Sky &amp; Star, P&amp;O Aurora, and RCI Explorer of the Seas.</p>
+                            <h3>SMC Design &amp; Tillberg (London &amp; Sweden)</h3>
+                            <p>Created public and accommodation interior spaces for Costa Victoria, Star Cruises (Leo, Virgo, Scorpio), NCL Sky &amp; Star, P&amp;O Aurora, and RCI Explorer of the Seas.</p>
                         </div>
                     </div>
 
+                    <!-- Point 10: 1992 – 1994 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
                             <div class="timeline-year">1992 – 1994</div>
-                            <h3>Kusch Yacht Agency</h3>
-                            <p>Assistant Interior Designer. Specialized in converting 2 tug boats to luxury yachts at Malta Drydocks – Simpson's &amp; Arctic P.</p>
+                            <h3>Kusch Yacht Agency (Malta Drydocks)</h3>
+                            <p>Specialized in luxury maritime conversions, transforming two commercial tug boats into iconic private superyachts – Simpson's &amp; Arctic P.</p>
                         </div>
                     </div>
 
@@ -881,8 +910,8 @@
 
         <section id="about" class="about-combination page-segment">
             <div class="about-images">
-                <img src="./index_files/photo-1580489944761-15a19d654956" alt="Founder One" loading="lazy">
-                <img src="./index_files/photo-1507003211169-0a1dd7228f2d" alt="Founder Two" loading="lazy">
+                <img src="./index_files/founder1.png" alt="Founder One" loading="lazy">
+                <img src="./index_files/founder2.png" alt="Founder Two" loading="lazy">
             </div>
             <div class="glass-panel about-text">
                 <h2>Mastery of Scale &amp; Detail</h2>
