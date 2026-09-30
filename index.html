@@ -10,7 +10,7 @@
         :root {
             /* Paleta kolorów */
             --color-sea-mist: #8DA0A9;       /* Mgła Morska */
-            --color-sea-mist-loader: #667D94;       /* Tło ekranu ładowania */
+            --color-sea-mist-loader: #738694;       /* Tło ekranu ładowania */
             --color-pearl-white: #F4F2ED;   /* Perłowa Biel */
             --color-coastal-sand: #DCCBB5;  /* Piasek Wybrzeża */
             --color-taupe: #B8B1A5;         /* Szlachetna Taupe */
@@ -133,12 +133,30 @@
             animation: loaderFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
         }
 
+        /* Metaliczne logo: kształt SVG jako maska, pod nią gradient z przycisków */
+        .loader-logo-metal {
+            display: inline-block;
+            background-color: var(--metal-base);
+            background-image: var(--metal-bg);
+            background-blend-mode: overlay, normal;
+            background-size: 200px 200px, 250% 100%;
+            -webkit-mask: url("./index_files/logo.svg") center / contain no-repeat;
+            mask: url("./index_files/logo.svg") center / contain no-repeat;
+            animation: metalShine 3.5s ease-in-out infinite alternate;
+        }
+
+        /* Obraz tylko nadaje wymiary masce – sam jest niewidoczny */
         .loader-logo-img {
+            display: block;
             height: 220px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px -360px 0px var(--color-gold-bright));
-            transform: translateY(360px);
+            opacity: 0;
+        }
+
+        @keyframes metalShine {
+            from { background-position: 0 0, 0% 50%; }
+            to   { background-position: 0 0, 100% 50%; }
         }
 
         .loader-motto {
@@ -302,7 +320,12 @@
             background-color: var(--color-champagne-gold);
             border-color: #ffffff;
             transform: scale(1.4);
-            box-shadow: 0 0 0 4px rgba(224, 199, 136, 0.35), 0 0 14px 4px rgba(224, 199, 136, 0.85), 0 2px 6px rgba(0, 0, 0, 0.2);
+            /* Miękka biała poświata, wygasająca stopniowo (bez ostrej krawędzi) */
+            box-shadow:
+                0 0 4px 1px rgba(255, 255, 255, 0.95),
+                0 0 12px 4px rgba(255, 255, 255, 0.6),
+                0 0 24px 8px rgba(255, 255, 255, 0.3),
+                0 0 40px 14px rgba(255, 255, 255, 0.12);
         }
 
         .nav-links li a.active-nav::after {
@@ -505,18 +528,19 @@
             transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
+        /* Po najechaniu: metal zostaje, dochodzi miękka biała poświata */
         .contact-form .btn:hover {
-            background-color: #2D2724;
-            background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
-                linear-gradient(105deg,
-                    #2D2724 0%,
-                    #453D37 30%,
-                    #38302C 60%,
-                    #2B2422 100%
-                );
-
-            box-shadow: 0 10px 30px rgba(51, 45, 41, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            background-color: var(--metal-base);
+            background-image: var(--metal-bg);
+            background-blend-mode: overlay, normal;
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 0 8px 2px rgba(255, 255, 255, 0.7),
+                0 0 22px 8px rgba(255, 255, 255, 0.35),
+                0 0 45px 16px rgba(255, 255, 255, 0.15),
+                0 8px 25px rgba(156, 133, 95, 0.3),
+                inset 0 1px 3px rgba(255, 255, 255, 0.9);
+            filter: brightness(1.07);
             color: #ffffff;
             transform: translateY(-2px);
         }
@@ -581,11 +605,7 @@
             }
 
             .loader-logo-wrapper { height: 220px; }
-            .loader-logo-img {
-                height: 220px;
-                filter: drop-shadow(0px -360px 0px var(--color-gold-bright));
-                transform: translateY(360px);
-            }
+            .loader-logo-img { height: 220px; }
 
             .main-nav {
                 top: 20px;
@@ -707,7 +727,9 @@
     <div id="loader">
         <div class="loader-content">
             <div class="loader-logo-wrapper">
-                <img src="./index_files/logo.svg" alt="RD Studio Logo" class="loader-logo-img">
+                <div class="loader-logo-metal">
+                    <img src="./index_files/logo.svg" alt="RD Studio Logo" class="loader-logo-img">
+                </div>
             </div>
             <div class="loader-motto">Yacht &amp; Interior Design</div>
         </div>
