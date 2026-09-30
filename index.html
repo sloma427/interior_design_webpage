@@ -6,47 +6,62 @@
     <title>RD Studio | Yacht &amp; Interior Design</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
-        
+
         :root {
             /* Paleta kolorów */
             --color-sea-mist: #8DA0A9;       /* Mgła Morska */
-            --color-sea-mist-loader: #7487A1;       /* Mgła Morska na ekranie ładowania*/
+            --color-sea-mist-loader: #667D94;       /* Tło ekranu ładowania */
             --color-pearl-white: #F4F2ED;   /* Perłowa Biel */
             --color-coastal-sand: #DCCBB5;  /* Piasek Wybrzeża */
             --color-taupe: #B8B1A5;         /* Szlachetna Taupe */
             --color-champagne-gold: #B89647;/* Wzmocnione Szampańskie Złoto */
             --color-gold-bright: #E0C788;   /* Jasne złoto dla kontrastu w loaderze */
-            
-            /* Szlachetne odcienie tekstów */
-            --color-walnut-deep: #332D29;    /* Głęboki grafit */
-            --color-walnut-soft: #544E4A;    /* Miękki odcień do opisów */
-            
+
+            /* Jeden ciemnobrązowy kolor dla całego ciemnego tekstu */
+            --color-brown-dark: #5A4D3B;
+            --color-walnut-deep: var(--color-brown-dark);
+            --color-walnut-soft: var(--color-brown-dark);
+
+            /* Metaliczne, szczotkowane złoto (odcień bazowy #9C855F) */
+            --metal-base: #9C855F;
+            --metal-bg:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
+                linear-gradient(105deg,
+                    #856F4D 0%,
+                    #A38D68 25%,
+                    #BBA682 45%,
+                    #967F5A 65%,
+                    #BFAB88 85%,
+                    #7D6846 100%
+                );
+            --metal-shadow: 0 8px 25px rgba(156, 133, 95, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+
             /* Jasne, mleczne szkło (Light Glassmorphism) */
             --glass-bg: rgba(244, 242, 237, 0.1);
             --glass-border: rgba(184, 150, 71, 0.3);
             --glass-blur: blur(25px);
             --glass-shadow: 0 15px 35px 0 rgba(141, 160, 169, 0.12), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
-            
-            --text-main: var(--color-walnut-deep);
-            --text-light: var(--color-walnut-soft);
-            --accent: var(--color-champagne-gold); 
-            
+
+            --text-main: var(--color-brown-dark);
+            --text-light: var(--color-brown-dark);
+            --accent: var(--color-champagne-gold);
+
             --grid-gap: 30px;
-            --panel-radius: 24px; 
-        }
-        
-        html { 
-            background-color: var(--color-pearl-white);
-            scroll-behavior: smooth; 
+            --panel-radius: 24px;
         }
 
-        body { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            overflow-x: hidden; 
+        html {
+            background-color: var(--color-pearl-white);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* --- STATYCZNE TŁO IDEALNIE SKALUJĄCE SIĘ Z WYSOKOŚCIĄ EKRANU --- */
@@ -85,7 +100,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: var(--color-sea-mist);
+            background-color: var(--color-sea-mist-loader);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -156,7 +171,7 @@
             justify-content: center;
             width: 100%;
         }
-        
+
         .top-logo-container a {
             display: flex;
             flex-direction: column;
@@ -185,57 +200,57 @@
             filter: drop-shadow(0px -360px 0px var(--color-walnut-soft));
             transform: translateY(360px);
         }
-        
-        h1, h2, .editorial-header { 
-            font-family: 'Playfair Display', serif; 
-            font-weight: 400; 
-            margin-bottom: 20px; 
-            color: #5A4D3B; 
+
+        h1, h2, .editorial-header {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--color-brown-dark);
         }
-        h3, h4 { 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            font-size: 0.9rem; 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--color-walnut-deep); 
+        h3, h4 {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-walnut-deep);
         }
         a { text-decoration: none; color: inherit; }
 
         /* --- VERTICAL DOT NAVIGATION (DESKTOP) --- */
-        .main-nav { 
-            position: fixed; 
-            top: 50%; 
-            right: 40px; 
-            transform: translateY(-50%); 
-            z-index: 1000; 
+        .main-nav {
+            position: fixed;
+            top: 50%;
+            right: 40px;
+            transform: translateY(-50%);
+            z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             gap: 20px;
             box-sizing: border-box;
         }
-        
+
         .nav-brand { display: none; }
         .nav-controls { display: none; }
 
-        .nav-links { 
-            display: flex; 
+        .nav-links {
+            display: flex;
             flex-direction: column;
-            list-style: none; 
-            margin: 0; 
-            padding: 0; 
-            align-items: flex-end; 
-            gap: 18px; 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: flex-end;
+            gap: 18px;
         }
-        
+
         .nav-links li {
             display: flex;
             align-items: center;
             position: relative;
         }
-        
-        .nav-links li a { 
+
+        .nav-links li a {
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -247,22 +262,24 @@
             letter-spacing: 1.5px;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-        
+
+        /* Opis kropki: przezroczyste szkło w kształcie pigułki */
         .nav-links li a span.nav-title {
             opacity: 0;
             transform: translateX(10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: none;
-            background: rgba(51, 45, 41, 0.9);
-            padding: 5px 12px;
-            border-radius: 4px;
-            border: 1px solid var(--color-champagne-gold);
-            backdrop-filter: blur(8px);
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 6px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
             white-space: nowrap;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            color: var(--color-brown-dark);
         }
-        
+
         .nav-links li a::after {
             content: '';
             width: 8px;
@@ -275,17 +292,19 @@
             display: inline-block;
             flex-shrink: 0;
         }
-        
+
         .nav-links li:hover a span.nav-title {
             opacity: 1;
             transform: translateX(0);
         }
+        /* Podświetlenie kropki pod kursorem */
         .nav-links li:hover a::after {
             background-color: var(--color-champagne-gold);
             border-color: #ffffff;
-            transform: scale(1.3);
+            transform: scale(1.4);
+            box-shadow: 0 0 0 4px rgba(224, 199, 136, 0.35), 0 0 14px 4px rgba(224, 199, 136, 0.85), 0 2px 6px rgba(0, 0, 0, 0.2);
         }
-        
+
         .nav-links li a.active-nav::after {
             background-color: var(--color-champagne-gold);
             border-color: #ffffff;
@@ -295,21 +314,31 @@
 
         .hamburger { display: none; }
 
-        .btn { display: inline-block; background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--color-champagne-gold); color: var(--color-walnut-deep); padding: 14px 30px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s ease; border-radius: 50px; font-family: 'Montserrat', sans-serif;} 
-        .btn:hover { background-color: var(--color-champagne-gold); color: #ffffff; transform: translateY(-1px);}
-
-        .glass-panel { 
-            background: var(--glass-bg); 
-            backdrop-filter: var(--glass-blur); 
-            -webkit-backdrop-filter: var(--glass-blur); 
-            border: 1px solid var(--glass-border); 
-            border-radius: var(--panel-radius); 
-            box-shadow: var(--glass-shadow); 
-            padding: 50px; 
-            box-sizing: border-box; 
-            will-change: transform, backdrop-filter; 
+        .btn { display: inline-block; background-color: rgba(255, 255, 255, 0.6); border: 1px solid var(--color-champagne-gold); color: var(--color-walnut-deep); padding: 14px 30px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); border-radius: 50px; font-family: 'Montserrat', sans-serif;}
+        /* Metaliczny efekt po najechaniu */
+        .btn:hover {
+            background-color: var(--metal-base);
+            background-image: var(--metal-bg);
+            background-blend-mode: overlay, normal;
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: var(--metal-shadow);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            transform: translateY(-1px);
         }
-        
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--panel-radius);
+            box-shadow: var(--glass-shadow);
+            padding: 50px;
+            box-sizing: border-box;
+            will-change: transform, backdrop-filter;
+        }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 0 100px 0 40px; box-sizing: border-box; }
 
         .hero { height: auto; min-height: 75vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; border-bottom: 1px solid var(--glass-border); padding: 20px 0 60px 0; box-sizing: border-box;}
@@ -326,7 +355,7 @@
         .services-header { text-align: center; margin-bottom: 60px; }
         .services-header h2 { font-size: 3rem; margin-bottom: 15px; }
         .services-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem; font-weight: 400; }
-        
+
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--grid-gap); margin-bottom: 80px; }
         .service-card { border-radius: var(--panel-radius); border: 1px solid var(--glass-border); overflow: hidden; display: flex; flex-direction: column; background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); box-shadow: var(--glass-shadow); transition: transform 0.3s ease, border-color 0.3s ease; }
         .service-card:hover { transform: translateY(-5px); border-color: var(--color-champagne-gold); }
@@ -340,45 +369,45 @@
         .timeline-header { text-align: center; margin-bottom: 60px; }
         .timeline-header h2 { font-size: 3rem; margin-bottom: 15px; }
         .timeline-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.05rem; font-weight: 400; }
-        
-        .timeline-wrapper { 
-            position: relative; 
-            max-height: 850px; 
-            overflow: hidden; 
-            transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1); 
-            margin-bottom: 40px; 
+
+        .timeline-wrapper {
+            position: relative;
+            max-height: 850px;
+            overflow: hidden;
+            transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 40px;
             -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
             mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
         }
-        
-        .timeline-wrapper.expanded { 
-            max-height: 6000px; 
+
+        .timeline-wrapper.expanded {
+            max-height: 6000px;
             -webkit-mask-image: none;
             mask-image: none;
         }
-        
+
         .timeline-overlay { display: none; }
-        
+
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding-bottom: 40px;}
         .timeline::after { content: ''; position: absolute; width: 1px; background: var(--glass-border); top: 0; bottom: 0; left: 50%; margin-left: -0.5px; z-index: 0; }
-        
+
         .timeline-item { padding: 10px 40px; position: relative; background-color: transparent; width: 50%; box-sizing: border-box; margin-bottom: 20px; z-index: 1;}
         .timeline-item:nth-child(odd) { left: 0; text-align: right; }
         .timeline-item:nth-child(even) { left: 50%; text-align: left; }
-        
+
         @media (min-width: 769px) {
             .timeline-item:not(:first-child) {
-                margin-top: 0px; 
+                margin-top: 0px;
             }
         }
 
         .timeline-item::after { content: ''; position: absolute; width: 14px; height: 14px; background-color: var(--color-champagne-gold); border-radius: 50%; top: 30px; z-index: 1; box-shadow: 0 0 10px rgba(184, 150, 71, 0.5); }
         .timeline-item:nth-child(odd)::after { right: -7px; }
         .timeline-item:nth-child(even)::after { left: -7px; }
-        
+
         .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease; will-change: transform;}
         .timeline-card:hover { transform: translateY(-5px); border-color: var(--color-champagne-gold); }
-        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #5A4D3B; margin-bottom: 10px; }
+        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-brown-dark); margin-bottom: 10px; }
         .timeline-card h3 { font-size: 1.15rem; margin: 0 0 10px 0; color: var(--color-walnut-deep); font-family: 'Montserrat', sans-serif; font-weight: 600; }
         .timeline-card p { margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.6; font-weight: 400; }
 
@@ -386,18 +415,18 @@
         .carousel-container { position: relative; margin-top: 20px; border-radius: 12px; overflow: hidden; transform: translateZ(0); }
         .timeline-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; gap: 10px;}
         .timeline-carousel::-webkit-scrollbar { display: none; }
-        
-        .timeline-carousel img { 
-            flex: 0 0 100%; 
-            height: 220px; 
-            object-fit: cover; 
-            scroll-snap-align: center; 
-            scroll-snap-stop: always;  
-            cursor: zoom-in; 
+
+        .timeline-carousel img {
+            flex: 0 0 100%;
+            height: 220px;
+            object-fit: cover;
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+            cursor: zoom-in;
             transition: transform 0.4s ease;
         }
         .timeline-carousel img:hover { transform: scale(1.02); }
-        
+
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(244, 242, 237, 0.85); border: 1px solid var(--glass-border); color: var(--color-walnut-deep); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: 0.3s; font-size: 14px;}
         .carousel-btn:hover { background: var(--color-champagne-gold); color: #fff; }
         .carousel-btn.prev { left: 10px; }
@@ -405,100 +434,90 @@
 
         /* CAROUSEL DOTS */
         .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
-        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(51, 45, 41, 0.25); cursor: pointer; transition: 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(90, 77, 59, 0.25); cursor: pointer; transition: 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .dot.active { background: var(--color-champagne-gold); transform: scale(1.3); }
 
         /* About Us Section */
         .about-combination { display: grid; grid-template-columns: 1fr 1fr; gap: var(--grid-gap); align-items: stretch; margin-top: 40px;}
         .about-images { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
+
         .about-images img { width: 100%; height: 100%; min-height: 400px; object-fit: cover; border-radius: var(--panel-radius); border: 1px solid var(--glass-border); }
-        
+
         .about-text { justify-content: center; display: flex; flex-direction: column; align-items: flex-start; }
         .about-text h2 { font-size: 3rem; margin-top: 0; }
         .about-text p { font-weight: 400; color: var(--text-light); }
         .about-text .btn { margin-top: 15px; }
-        
+
         .designer-signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--color-champagne-gold); margin-top: 30px; opacity: 0.95; }
 
         .final-call { max-width: 900px; margin: 120px auto 60px; text-align: center; }
         .final-call h2 { font-size: 4rem; letter-spacing: -1px; margin-bottom: 10px; }
         .final-call p { color: var(--text-light); margin-bottom: 60px; font-size: 1.15rem; font-weight: 400; }
-        
+
         /* Formularz dopasowany do jasnej kolorystyki */
         .contact-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        
-        .contact-form input, .contact-form select, .contact-form textarea { 
-            width: 100%; 
-            padding: 18px; 
-            border: 1px solid var(--glass-border); 
-            background: rgba(255, 255, 255, 0.65); 
-            border-radius: 16px; 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 14px; 
-            color: var(--color-walnut-deep); 
-            box-sizing: border-box; 
-            transition: 0.3s; 
-            backdrop-filter: blur(10px); 
+
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width: 100%;
+            padding: 18px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            color: var(--color-walnut-deep);
+            box-sizing: border-box;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
         .contact-form input::placeholder, .contact-form textarea::placeholder {
             color: var(--color-sea-mist);
         }
-        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { 
-            outline: none; 
-            border-color: var(--color-champagne-gold); 
-            background: rgba(255, 255, 255, 0.9); 
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-champagne-gold);
+            background: rgba(255, 255, 255, 0.9);
         }
         .contact-form select { background-color: rgba(244, 242, 237, 0.95); color: var(--color-walnut-deep); }
         .contact-form select option { background: #F4F2ED; color: var(--color-walnut-deep); }
         .contact-form textarea { min-height: 150px; resize: none; border-radius: 16px; }
-        
+
         /* --- SATYNOWE SZCZOTKOWANE ZŁOTO NA PRZYCISKU --- */
-        .contact-form .btn { 
-            width: 100%; 
-            margin-top: 10px; 
-            padding: 20px; 
-            border-radius: 50px; 
-            font-size: 12px; 
-            font-weight: 600; 
+        .contact-form .btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
             letter-spacing: 2px;
-            color: #ffffff; 
+            color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            
-            background-color: #B89647;
-            background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
-                linear-gradient(105deg, 
-                    #A38338 0%, 
-                    #C2A559 25%, 
-                    #D3B86C 45%, 
-                    #B39143 65%, 
-                    #D8C079 85%, 
-                    #9E7E34 100%
-                );
-            
+
+            background-color: var(--metal-base);
+            background-image: var(--metal-bg);
             background-blend-mode: overlay, normal;
-            box-shadow: 0 8px 25px rgba(184, 150, 71, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+            box-shadow: var(--metal-shadow);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        
-        .contact-form .btn:hover { 
-            background-color: var(--color-walnut-deep); 
-            background-image: 
+
+        .contact-form .btn:hover {
+            background-color: #2D2724;
+            background-image:
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
-                linear-gradient(105deg, 
-                    #2D2724 0%, 
-                    #453D37 30%, 
-                    #38302C 60%, 
+                linear-gradient(105deg,
+                    #2D2724 0%,
+                    #453D37 30%,
+                    #38302C 60%,
                     #2B2422 100%
                 );
-            
+
             box-shadow: 0 10px 30px rgba(51, 45, 41, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.3);
-            color: #ffffff; 
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
@@ -512,12 +531,12 @@
             .final-call h2 { font-size: 3rem; }
             .hero h1 { font-size: 3.5rem; }
         }
-        
+
         /* --- DEDYKOWANE POPRAWKI MOBILNE --- */
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
             .page-segment { padding: 45px 0; }
-            
+
             .timeline {
                 padding-left: 20px;
                 padding-right: 0;
@@ -551,7 +570,7 @@
             }
         }
 
-        @media (max-width: 1024px) { 
+        @media (max-width: 1024px) {
             /* --- MOBILNE LOGO USTAWIONE NA 150PX --- */
             .top-logo-container { padding-top: 30px; }
             .top-logo-wrapper { height: 150px; }
@@ -568,14 +587,14 @@
                 transform: translateY(360px);
             }
 
-            .main-nav { 
-                top: 20px; 
+            .main-nav {
+                top: 20px;
                 right: 20px;
-                transform: none; 
+                transform: none;
                 z-index: 2500;
             }
-            
-            .nav-controls { 
+
+            .nav-controls {
                 background: rgba(244, 242, 237, 0.85);
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
@@ -589,8 +608,8 @@
                 justify-content: center;
                 cursor: pointer;
             }
-            
-            .hamburger { 
+
+            .hamburger {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -599,38 +618,38 @@
                 width: 20px;
                 height: 20px;
             }
-            .hamburger span { 
-                display: block; 
-                width: 18px; 
-                height: 2px; 
-                background-color: var(--color-walnut-deep); 
+            .hamburger span {
+                display: block;
+                width: 18px;
+                height: 2px;
+                background-color: var(--color-walnut-deep);
                 border-radius: 2px;
-                transition: 0.3s ease; 
+                transition: 0.3s ease;
             }
 
-            .nav-links { 
-                position: fixed; 
-                top: 0; 
-                left: 0; 
-                width: 100vw; 
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
                 height: 100vh;
-                background: rgba(244, 242, 237, 0.94); 
-                backdrop-filter: blur(25px); 
+                background: rgba(244, 242, 237, 0.94);
+                backdrop-filter: blur(25px);
                 -webkit-backdrop-filter: blur(25px);
-                flex-direction: column; 
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                padding: 0; 
-                max-height: 0; 
+                padding: 0;
+                max-height: 0;
                 opacity: 0;
                 visibility: hidden;
-                overflow: hidden; 
-                transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s linear 0.4s; 
+                overflow: hidden;
+                transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s linear 0.4s;
                 gap: 32px;
                 z-index: 2400;
             }
-            .nav-links.active { 
-                max-height: 100vh; 
+            .nav-links.active {
+                max-height: 100vh;
                 opacity: 1;
                 visibility: visible;
                 transition: opacity 0.4s ease, visibility 0.4s ease, max-height 0s linear 0s;
@@ -640,30 +659,32 @@
                 text-align: center;
                 justify-content: center;
             }
-            .nav-links li a { 
+            .nav-links li a {
                 display: inline-block;
-                text-align: center; 
-                width: auto; 
+                text-align: center;
+                width: auto;
                 font-family: 'Playfair Display', serif;
-                font-size: 1.8rem; 
-                letter-spacing: 2px; 
+                font-size: 1.8rem;
+                letter-spacing: 2px;
                 text-transform: none;
                 color: var(--color-walnut-deep);
                 font-weight: 400;
                 transition: color 0.3s ease, transform 0.3s ease;
             }
-            .nav-links li a span.nav-title { 
-                opacity: 1 !important; 
-                transform: none !important; 
-                background: transparent; 
-                padding: 0; 
-                border: none; 
+            .nav-links li a span.nav-title {
+                opacity: 1 !important;
+                transform: none !important;
+                background: transparent;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                padding: 0;
+                border: none;
                 box-shadow: none;
-                color: inherit; 
+                color: inherit;
             }
             .nav-links li a::after { display: none !important; }
-            .nav-links li a:hover, .nav-links li a.active-nav { 
-                color: var(--color-champagne-gold); 
+            .nav-links li a:hover, .nav-links li a.active-nav {
+                color: var(--color-champagne-gold);
                 transform: translateY(-2px);
             }
 
@@ -747,7 +768,7 @@
                 <h2>Bespoke Commissions</h2>
                 <p>We accept a select number of private residential and maritime commissions per year, ensuring absolute dedication to realizing your unique vision.</p>
             </div>
-            
+
             <div class="services-grid">
                 <div class="service-card">
                     <img src="./index_files/timeline2.jpg" alt="Full Package Design" loading="lazy">
@@ -756,7 +777,7 @@
                         <p>From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail.</p>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <img src="./index_files/timeline3.jpg" alt="Conceptual Design" loading="lazy">
                     <div class="service-card-text">
@@ -764,7 +785,7 @@
                         <p>Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project.</p>
                     </div>
                 </div>
-                
+
                 <div class="service-card">
                     <img src="./index_files/timeline4.jpg" alt="Design Consultations" loading="lazy">
                     <div class="service-card-text">
@@ -780,10 +801,10 @@
                 <h2>Our Professional Journey</h2>
                 <p>A legacy of maritime &amp; interior design excellence spanning over three decades.</p>
             </div>
-            
+
             <div class="timeline-wrapper" id="timeline-wrapper">
                 <div class="timeline">
-                    
+
                     <!-- Point 1: 2026 -->
                     <div class="timeline-item">
                         <div class="timeline-card">
@@ -799,7 +820,7 @@
                             <div class="timeline-year">2023 – Present</div>
                             <h3>Disney Adventure, AmaWaterways &amp; MSC Fleet</h3>
                             <p>Led end-to-end design development and project management for mega-vessels and river cruise ships. Managed FF&amp;E coordination for AmaWaterways (8 ships) and Holland America refits, alongside taking full ownership of signature onboard zones (SPA, specialty restaurants) and technical documentation for MSC Cruises.</p>
-                            
+
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
@@ -817,7 +838,7 @@
                             <div class="timeline-year">2018 – 2023</div>
                             <h3>Disney Cruise Line Fleet (Wish, Treasure, Destiny)</h3>
                             <p>Co-led the interior design and delivery process for three Disney Cruise Line newbuild vessels across a 5-year development cycle. Directed multidisciplinary teams of up to 20 designers, taking total ownership of the luxury cabins, suites, and public spaces scope—from early concepts and mock-up approvals to shipyard execution.</p>
-                            
+
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
@@ -853,7 +874,7 @@
                             <div class="timeline-year">2014 – 2017</div>
                             <h3>Tillberg Design of Sweden &amp; Commercial Interiors</h3>
                             <p>Interior designers across Sweden, Poland, and Malta. Led accommodation and public space design for Norwegian Cruise Line (NCL Joy, Gem, Epic, Sun refits) and developed technical documentation for upscale hospitality and restaurant concepts.</p>
-                            
+
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
@@ -881,7 +902,7 @@
                             <div class="timeline-year">1998 – 2001</div>
                             <h3>Royal Caribbean International (Designteam London)</h3>
                             <p>Project Management for Radiance of the Seas &amp; Brilliance of the Seas. Overseeing design intent and execution for retail environments, cafés, and onboard public galleries.</p>
-                            
+
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
@@ -913,7 +934,7 @@
 
                 </div>
             </div>
-            
+
             <button id="toggle-timeline-btn" class="btn" onclick="toggleTimeline()">Expand Journey</button>
         </section>
 
@@ -926,7 +947,7 @@
                 <h2>Mastery of Scale &amp; Detail</h2>
                 <p>With years of collective experience spanning both ultra-luxury maritime and high-end residential interior design, we bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline in us—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, we engineer environments of profound elegance. Whether on land or at sea, we manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space.</p>
                 <a href="#contact" class="btn">Let's connect</a>
-                
+
                 <div class="designer-signature">RD Studio</div>
             </div>
         </section>
@@ -935,7 +956,7 @@
             <div class="glass-panel">
                 <h2>Discuss Your Vision</h2>
                 <p>To explore a potential collaboration, please provide the preliminary details of your property or vessel below. We will respond within 48 hours.</p>
-                
+
                 <form class="contact-form" action="https://formspree.io/f/meedrwze" method="POST">
                     <div class="form-row">
                         <input type="text" name="first_name" id="input-fn" placeholder="First Name" required="">
@@ -978,7 +999,7 @@
         function scrollCarousel(button, direction) {
             const container = button.parentElement;
             const carousel = container.querySelector('.timeline-carousel');
-            const itemWidth = carousel.clientWidth + 10; 
+            const itemWidth = carousel.clientWidth + 10;
             carousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
         }
 
@@ -994,7 +1015,7 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: "-40% 0px -40% 0px", 
+                rootMargin: "-40% 0px -40% 0px",
                 threshold: 0
             };
 
