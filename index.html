@@ -211,12 +211,15 @@
             justify-content: center;
         }
 
+        /* Logo jako maska SVG zabarwiona kolorem tła (działa też w Safari na iOS,
+           które nie rysuje drop-shadow elementu przesuniętego poza overflow:hidden) */
         .top-logo-img {
+            display: block;
             height: 150px; /* Dokładnie 150px */
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px -360px 0px var(--color-walnut-soft));
-            transform: translateY(360px);
+            width: calc(150px * 2606 / 2314); /* proporcje viewBox logo.svg */
+            background-color: var(--color-walnut-soft);
+            -webkit-mask: url("./index_files/logo.svg") center / contain no-repeat;
+            mask: url("./index_files/logo.svg") center / contain no-repeat;
         }
 
         h1, h2, .editorial-header {
@@ -600,8 +603,7 @@
             .top-logo-wrapper { height: 150px; }
             .top-logo-img {
                 height: 150px;
-                filter: drop-shadow(0px -360px 0px var(--color-walnut-soft));
-                transform: translateY(360px);
+                width: calc(150px * 2606 / 2314);
             }
 
             .loader-logo-wrapper { height: 220px; }
@@ -760,7 +762,7 @@
         <div class="top-logo-container" id="home_logo">
             <a href="#home">
                 <div class="top-logo-wrapper">
-                    <img src="./index_files/logo.svg" alt="RD Studio Logo" class="top-logo-img">
+                    <span class="top-logo-img" role="img" aria-label="RD Studio Logo"></span>
                 </div>
             </a>
         </div>
