@@ -99,7 +99,7 @@
             .card { animation: none; }
         }
 
-        /* --- LOGO (ten sam trik co .top-logo-img) --- */
+        /* --- LOGO --- */
         .logo-link {
             display: inline-flex;
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -112,12 +112,14 @@
             align-items: center;
             justify-content: center;
         }
+        /* Logo jako maska SVG zabarwiona kolorem tła (działa też w Safari na iOS) */
         .logo-img {
+            display: block;
             height: 110px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px -360px 0px var(--color-brown-dark));
-            transform: translateY(360px);
+            width: calc(110px * 2606 / 2314); /* proporcje viewBox logo.svg */
+            background-color: var(--color-brown-dark);
+            -webkit-mask: url("../index_files/logo.svg") center / contain no-repeat;
+            mask: url("../index_files/logo.svg") center / contain no-repeat;
         }
 
         /* --- NAGŁÓWEK --- */
@@ -278,7 +280,7 @@
     <main class="card">
         <a href="https://rdstudiodesign.com/" class="logo-link" aria-label="RD Studio – home page">
             <span class="logo-wrapper">
-                <img src="../index_files/logo.svg" alt="RD Studio Logo" class="logo-img">
+                <span class="logo-img" role="img" aria-label="RD Studio Logo"></span>
             </span>
         </a>
 
@@ -309,7 +311,7 @@
         </ul>
         <!-- /DANE DO EDYCJI -->
 
-        <a href="contact.vcf" class="btn btn-metal">Save Contact</a>
+        <a href="contact.vcf" class="btn btn-metal" id="saveContact">Save Contact</a>
         <a href="https://rdstudiodesign.com" class="btn btn-glass">Visit Website</a>
 
         <button type="button" class="share-btn" id="shareBtn">Share this card</button>
@@ -318,6 +320,32 @@
     </main>
 
     <script>
+        /* Android: zamiast pobierać contact.vcf, otwórz systemowy formularz
+           „Nowy kontakt” z wypełnionymi danymi. Jeśli telefon nie obsłuży tego
+           intentu, Chrome przejdzie do browser_fallback_url (zwykły plik .vcf).
+           DANE DO EDYCJI – muszą zgadzać się z HTML powyżej i z contact.vcf */
+        (function () {
+            if (!/Android/i.test(navigator.userAgent)) return;
+            var e = encodeURIComponent;
+            var contact = {
+                name: 'Dominika Sloma',
+                phone: '+48668840966',
+                email: 'contact@rdstudiodesign.com',
+                company: 'RD Studio',
+                job_title: 'Founder & Lead Designer',
+                notes: 'Yacht & Interior Design – https://rdstudiodesign.com'
+            };
+            var extras = Object.keys(contact).map(function (k) {
+                return 'S.' + k + '=' + e(contact[k]);
+            });
+            extras.push('i.phone_type=2');  /* komórkowy */
+            extras.push('i.email_type=2');  /* służbowy */
+            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/contact.vcf'));
+            document.getElementById('saveContact').href =
+                'intent:#Intent;action=android.intent.action.INSERT;' +
+                'type=vnd.android.cursor.dir/raw_contact;' + extras.join(';') + ';end';
+        })();
+
         (function () {
             var CARD_URL = 'https://rdstudiodesign.com/card/';
             var btn = document.getElementById('shareBtn');
