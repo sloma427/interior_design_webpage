@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="is-loading">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./index_files/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="./index_files/icon-192.png">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap">
+    <link rel="preload" as="image" href="./index_files/background.jpg" fetchpriority="high">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
         :root {
             /* Paleta kolorów */
@@ -75,6 +78,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100lvh; /* stała wysokość: pasek adresu na telefonie nie przeskalowuje tła przy scrollu */
             z-index: -2;
             overflow: hidden;
             pointer-events: none;
@@ -118,6 +122,9 @@
             visibility: hidden;
             pointer-events: none;
         }
+
+        /* Podczas ładowania strona pod loaderem nie przewija się */
+        html.is-loading, html.is-loading body { overflow: hidden; }
 
         .loader-content {
             display: flex;
@@ -366,7 +373,6 @@
             box-shadow: var(--glass-shadow);
             padding: 50px;
             box-sizing: border-box;
-            will-change: transform, backdrop-filter;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 100px 0 40px; box-sizing: border-box; }
@@ -435,7 +441,9 @@
         .timeline-item:nth-child(odd)::after { right: -7px; }
         .timeline-item:nth-child(even)::after { left: -7px; }
 
-        .timeline-card { background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease; will-change: transform;}
+        /* Stałe mleczne tło zamiast backdrop-filter: maska zwiniętego .timeline-wrapper wyłączała
+           rozmycie (karty były przezroczyste), a 10 rozmytych kart spowalniało przewijanie */
+        .timeline-card { background: rgba(244, 242, 237, 0.7); border: 1px solid var(--glass-border); border-radius: var(--panel-radius); box-shadow: var(--glass-shadow); padding: 30px; text-align: left; transition: transform 0.3s ease;}
         .timeline-card:hover { transform: translateY(-5px); border-color: var(--color-champagne-gold); }
         .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--color-brown-dark); margin-bottom: 10px; }
         .timeline-card h3 { font-size: 1.15rem; margin: 0 0 10px 0; color: var(--color-walnut-deep); font-family: 'Montserrat', sans-serif; font-weight: 600; }
@@ -499,8 +507,6 @@
             color: var(--color-walnut-deep);
             box-sizing: border-box;
             transition: 0.3s;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
         .contact-form input::placeholder, .contact-form textarea::placeholder {
             color: var(--color-sea-mist);
@@ -725,7 +731,7 @@
 
     <!-- KONTENER TŁA DLA IDEALNEGO SKALOWANIA PIONOWEGO -->
     <div class="fixed-bg">
-        <img src="./index_files/background.png" alt="Background">
+        <img src="./index_files/background.jpg" alt="" fetchpriority="high">
         <div class="fixed-bg-overlay"></div>
     </div>
 
@@ -786,7 +792,7 @@
                     <p>Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. We bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking.</p>
                 </div>
                 <div class="philosophy-image">
-                    <img src="./index_files/timeline1.jpg" alt="Luxury Materials Close-up" loading="lazy">
+                    <img src="./index_files/timeline1.jpg" alt="Luxury Materials Close-up" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
@@ -799,7 +805,7 @@
 
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="./index_files/timeline2.jpg" alt="Full Package Design" loading="lazy">
+                    <img src="./index_files/timeline2.jpg" alt="Full Package Design" loading="lazy" decoding="async">
                     <div class="service-card-text">
                         <h3>Full Package Design</h3>
                         <p>From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail.</p>
@@ -807,7 +813,7 @@
                 </div>
 
                 <div class="service-card">
-                    <img src="./index_files/timeline3.jpg" alt="Conceptual Design" loading="lazy">
+                    <img src="./index_files/timeline3.jpg" alt="Conceptual Design" loading="lazy" decoding="async">
                     <div class="service-card-text">
                         <h3>Conceptual Design</h3>
                         <p>Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project.</p>
@@ -815,7 +821,7 @@
                 </div>
 
                 <div class="service-card">
-                    <img src="./index_files/timeline4.jpg" alt="Design Consultations" loading="lazy">
+                    <img src="./index_files/timeline4.jpg" alt="Design Consultations" loading="lazy" decoding="async">
                     <div class="service-card-text">
                         <h3>Design Consultations</h3>
                         <p>Dedicated meetings designed to help create a clear design direction or solve specific spatial and aesthetic problems in your project.</p>
@@ -852,8 +858,8 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1616486338812-3dadae4b4ace" alt="River Cruise 1" loading="lazy">
-                                    <img src="./index_files/photo-1600607687939-ce8a6c25118c" alt="River Cruise 2" loading="lazy">
+                                    <img src="./index_files/photo-1616486338812-3dadae4b4ace" alt="River Cruise 1" loading="lazy" decoding="async">
+                                    <img src="./index_files/photo-1600607687939-ce8a6c25118c" alt="River Cruise 2" loading="lazy" decoding="async">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
                             </div>
@@ -870,8 +876,8 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1604014237800-1c9102c219da" alt="Disney Wish 1" loading="lazy">
-                                    <img src="./index_files/photo-1567401893414-76b7b1e5a7a5" alt="Disney Wish 2" loading="lazy">
+                                    <img src="./index_files/photo-1604014237800-1c9102c219da" alt="Disney Wish 1" loading="lazy" decoding="async">
+                                    <img src="./index_files/photo-1567401893414-76b7b1e5a7a5" alt="Disney Wish 2" loading="lazy" decoding="async">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
                             </div>
@@ -906,9 +912,9 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1599619351208-3e6c839d6828" alt="NCL Project 1" loading="lazy">
-                                    <img src="./index_files/photo-1569336415962-a4bd9f69cd83" alt="NCL Project 2" loading="lazy">
-                                    <img src="./index_files/photo-1505693416388-ac5ce068fe85" alt="NCL Project 3" loading="lazy">
+                                    <img src="./index_files/photo-1599619351208-3e6c839d6828" alt="NCL Project 1" loading="lazy" decoding="async">
+                                    <img src="./index_files/photo-1569336415962-a4bd9f69cd83" alt="NCL Project 2" loading="lazy" decoding="async">
+                                    <img src="./index_files/photo-1505693416388-ac5ce068fe85" alt="NCL Project 3" loading="lazy" decoding="async">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
                             </div>
@@ -934,8 +940,8 @@
                             <div class="carousel-container">
                                 <button class="carousel-btn prev" onclick="scrollCarousel(this, -1)">❮</button>
                                 <div class="timeline-carousel">
-                                    <img src="./index_files/photo-1600596542815-ffad4c1539a9" alt="Cruise Project 1" loading="lazy">
-                                    <img src="./index_files/photo-1600585154340-be6161a56a0c" alt="Cruise Project 2" loading="lazy">
+                                    <img src="./index_files/photo-1600596542815-ffad4c1539a9" alt="Cruise Project 1" loading="lazy" decoding="async">
+                                    <img src="./index_files/photo-1600585154340-be6161a56a0c" alt="Cruise Project 2" loading="lazy" decoding="async">
                                 </div>
                                 <button class="carousel-btn next" onclick="scrollCarousel(this, 1)">❯</button>
                             </div>
@@ -968,8 +974,8 @@
 
         <section id="about" class="about-combination page-segment">
             <div class="about-images">
-                <img src="./index_files/founder1.png" alt="Founder One" loading="lazy">
-                <img src="./index_files/founder2.png" alt="Founder Two" loading="lazy">
+                <img src="./index_files/founder1.jpg" alt="Founder One" loading="lazy" decoding="async">
+                <img src="./index_files/founder2.jpg" alt="Founder Two" loading="lazy" decoding="async">
             </div>
             <div class="glass-panel about-text">
                 <h2>Mastery of Scale &amp; Detail</h2>
@@ -1006,12 +1012,55 @@
     </div>
 
     <script>
-        window.addEventListener('load', function() {
+        /* --- LOADER JAKO PRAWDZIWY EKRAN ŁADOWANIA ---
+           Zamiast stałych 2,2 s po zdarzeniu load: loader znika, gdy tło i fonty są
+           gotowe, a w tle dekoduje zdjęcia z pierwszych ekranów, żeby nie robić tego
+           w trakcie scrollowania. Minimum 1,5 s (żeby animacja logo i motta nie mignęła),
+           maksimum 5 s (wolne łącze nie blokuje strony). */
+        (function () {
             const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 2200);
-        });
+            const root = document.documentElement;
+            const MIN_MS = 1500, MAX_MS = 5000;
+            const start = performance.now();
+            let finished = false;
+
+            function decode(img) {
+                if (!img) return Promise.resolve();
+                img.loading = 'eager';
+                return (img.decode ? img.decode() : Promise.resolve()).catch(() => {});
+            }
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    root.classList.remove('is-loading');
+                    // Po zniknięciu usuń loader z DOM, żeby jego animacja nie działała w tle
+                    setTimeout(() => loader.remove(), 900);
+                    warmRemainingImages();
+                }, Math.max(0, MIN_MS - (performance.now() - start)));
+            }
+
+            // Pozostałe zdjęcia (oś czasu, karuzele, założyciele) – po kolei, w wolnych chwilach
+            function warmRemainingImages() {
+                const queue = Array.from(document.querySelectorAll('img[loading="lazy"]'));
+                const idle = window.requestIdleCallback || (cb => setTimeout(cb, 200));
+                (function next() {
+                    const img = queue.shift();
+                    if (img) idle(() => decode(img).then(next));
+                })();
+            }
+
+            const critical = [
+                decode(document.querySelector('.fixed-bg img')),
+                document.fonts ? document.fonts.ready : Promise.resolve(),
+                // zdjęcia z pierwszych ekranów: Philosophy + karty usług
+                ...Array.from(document.querySelectorAll('#philosophy img, #services img')).map(decode)
+            ];
+            Promise.all(critical).then(finish);
+            setTimeout(finish, MAX_MS);
+        })();
 
         function toggleTimeline() {
             const wrapper = document.getElementById('timeline-wrapper');
