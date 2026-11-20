@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Franklin;Rebecca;;;
+FN:Rebecca Franklin
+ORG:RD Studio
+TITLE:[Job Title]
+TEL;TYPE=CELL,VOICE:+00 000 000 000
+EMAIL;TYPE=INTERNET,WORK:email@example.com
+URL:https://rdstudiodesign.com
+NOTE:Marine & Land Design
+END:VCARD
