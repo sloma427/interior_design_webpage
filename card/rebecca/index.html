@@ -345,6 +345,7 @@
 
         @media (max-width: 480px) {
             .card { padding: 32px 22px 26px; }
+            .motto { letter-spacing: 2.5px; text-wrap: balance; }
         }
     </style>
 </head>
@@ -398,7 +399,7 @@
             <button type="button" class="share-btn" id="shareBtn">Share this card</button>
         </div>
 
-        <p class="motto">Marine &amp; Land Design</p>
+        <p class="motto">Marine &amp; Architectural Interiors</p>
     </main>
 
     <script>
@@ -415,7 +416,7 @@
                 email: 'email@example.com',      /* PLACEHOLDER */
                 company: 'RD Studio',
                 job_title: '[Job Title]',        /* PLACEHOLDER */
-                notes: 'Marine & Land Design – https://rdstudiodesign.com'
+                notes: 'Marine & Architectural Interiors – https://rdstudiodesign.com'
             };
             var extras = Object.keys(contact).map(function (k) {
                 return 'S.' + k + '=' + e(contact[k]);
