@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#738694">
-    <title>Dominika Słoma | RD Studio</title>
+    <title>Dolor Sit | RD Studio</title>
     <link rel="icon" href="../../favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="../../index_files/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../index_files/icon-192.png">
@@ -362,22 +362,23 @@
             </span>
         </a>
 
-        <!-- DANE DO EDYCJI – zmień też w contact.vcf -->
-        <h1 class="name">Dominika Słoma</h1>
-        <p class="role">Co-Founder &amp; Lead Designer</p>
+        <!-- DANE DO EDYCJI – zmień też w contact.vcf i w skrypcie na dole.
+             PLACEHOLDER: stanowisko, telefon i e-mail do uzupełnienia -->
+        <h1 class="name">Dolor Sit</h1>
+        <p class="role">[Job Title]</p>
         <hr class="gold-line">
 
         <ul class="contacts">
             <li>
-                <a href="tel:+48668840966">
+                <a href="tel:+00000000000">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span class="contact-text"><span class="label">Phone</span><span class="value">+48 668 840 966</span></span>
+                    <span class="contact-text"><span class="label">Phone</span><span class="value">+00 000 000 000</span></span>
                 </a>
             </li>
             <li>
-                <a href="mailto:contact@rdstudiodesign.com">
+                <a href="mailto:email@example.com">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
-                    <span class="contact-text"><span class="label">Email</span><span class="value">contact@rdstudiodesign.com</span></span>
+                    <span class="contact-text"><span class="label">Email</span><span class="value">email@example.com</span></span>
                 </a>
             </li>
             <li>
@@ -410,11 +411,11 @@
             if (!/Android/i.test(navigator.userAgent)) return;
             var e = encodeURIComponent;
             var contact = {
-                name: 'Dominika Słoma',
-                phone: '+48668840966',
-                email: 'contact@rdstudiodesign.com',
+                name: 'Dolor Sit',
+                phone: '+00000000000',          /* PLACEHOLDER */
+                email: 'email@example.com',      /* PLACEHOLDER */
                 company: 'RD Studio',
-                job_title: 'Co-Founder & Lead Designer',
+                job_title: '[Job Title]',        /* PLACEHOLDER */
                 notes: 'Marine & Land-Based Design – https://rdstudiodesign.com'
             };
             var extras = Object.keys(contact).map(function (k) {
@@ -422,14 +423,14 @@
             });
             extras.push('i.phone_type=2');  /* komórkowy */
             extras.push('i.email_type=2');  /* służbowy */
-            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/dominika/contact.vcf'));
+            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/b/contact.vcf'));
             document.getElementById('saveContact').href =
                 'intent:#Intent;action=android.intent.action.INSERT;' +
                 'type=vnd.android.cursor.dir/raw_contact;' + extras.join(';') + ';end';
         })();
 
         (function () {
-            var CARD_URL = 'https://rdstudiodesign.com/card/dominika/';
+            var CARD_URL = 'https://rdstudiodesign.com/card/b/';
             var btn = document.getElementById('shareBtn');
             var label = btn.textContent;
             var timer;
@@ -464,8 +465,8 @@
             btn.addEventListener('click', function () {
                 if (navigator.share) {
                     navigator.share({
-                        title: 'Dominika Słoma | RD Studio',
-                        text: 'Dominika Słoma, Co-Founder & Lead Designer, RD Studio',
+                        title: 'Dolor Sit | RD Studio',
+                        text: 'Dolor Sit, RD Studio',
                         url: CARD_URL
                     }).catch(function (err) {
                         if (err && err.name !== 'AbortError') copyLink();

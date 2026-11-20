@@ -3,7 +3,7 @@
 
 Użycie (z katalogu repozytorium):
     pip install segno
-    python3 tools/make_qr.py https://rdstudiodesign.com/card/dominika/ card/dominika/qr-card.svg
+    python3 tools/make_qr.py https://rdstudiodesign.com/card/a/ card/a/qr-card.svg
 
 Zapisuje SVG; PNG generuje się z niego osobno (np. renderując SVG w przeglądarce).
 Korekcja błędów H (30%), bo środek kodu zasłania monogram.
@@ -16,7 +16,8 @@ import segno
 COLOR = '#5A4D3B'
 BORDER = 4            # margines w modułach
 DOT = 0.86            # średnica kropki względem modułu
-LOGO_MODULES = 11     # bok wyczyszczonego kwadratu na monogram (w modułach, nieparzysty)
+LOGO_MAX = 11         # największy bok kwadratu na monogram (w modułach, nieparzysty)
+LOGO_SHARE = 0.09     # monogram zajmuje najwyżej ~9% kodu (przy większym udziale OpenCV gubił odczyt)
 
 # Monogram RD z logo-clean.svg (viewBox 2606x2314; sam monogram zajmuje x 66–2523, y 23–1655)
 LOGO_SVG = 'index_files/logo-clean.svg'
@@ -58,9 +59,12 @@ def main(url, out_path):
             aligns.append((ax, ay))
             reserve(ax - 2, ay - 2, 5)
 
+    logo_modules = min(LOGO_MAX, int((LOGO_SHARE * n * n) ** 0.5))
+    if logo_modules % 2 == 0:
+        logo_modules -= 1
     c = n // 2
-    half = LOGO_MODULES // 2
-    reserve(c - half, c - half, LOGO_MODULES)
+    half = logo_modules // 2
+    reserve(c - half, c - half, logo_modules)
 
     parts = []
     # kropki danych
@@ -86,7 +90,7 @@ def main(url, out_path):
     logo = open(LOGO_SVG, encoding='utf-8').read()
     inner = re.search(r'<g\b.*</g>', logo, re.S).group(0)
     inner = re.sub(r'fill="[^"]*"', f'fill="{COLOR}"', inner)
-    box = LOGO_MODULES - 2          # 1 moduł światła dookoła monogramu
+    box = logo_modules - 2          # 1 moduł światła dookoła monogramu
     lw = box
     lh = box * 1632 / 2457
     lx = c - half + 1 + BORDER
@@ -100,7 +104,7 @@ def main(url, out_path):
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(svg)
     print(f'{out_path}: version {qr.version}, ECC {qr.error.upper()}, {n}x{n} modules, '
-          f'logo {LOGO_MODULES}x{LOGO_MODULES} ({100 * LOGO_MODULES ** 2 / n ** 2:.1f}% of symbol)')
+          f'logo {logo_modules}x{logo_modules} ({100 * logo_modules ** 2 / n ** 2:.1f}% of symbol)')
 
 
 if __name__ == '__main__':
