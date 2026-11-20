@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#738694">
-    <title>Rebecca Franklin | RD Studio</title>
+    <title>Lorem Ipsum | RD Studio</title>
     <link rel="icon" href="../../favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="../../index_files/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../../index_files/icon-192.png">
@@ -362,10 +362,9 @@
             </span>
         </a>
 
-        <!-- DANE DO EDYCJI – zmień też w contact.vcf i w skrypcie na dole.
-             PLACEHOLDER: stanowisko, telefon i e-mail do uzupełnienia -->
-        <h1 class="name">Rebecca Franklin</h1>
-        <p class="role">[Job Title]</p>
+        <!-- DANE DO EDYCJI – zmień też w contact.vcf -->
+        <h1 class="name">Lorem Ipsum</h1>
+        <p class="role">Co-Founder &amp; Lead Designer</p>
         <hr class="gold-line">
 
         <ul class="contacts">
@@ -376,9 +375,9 @@
                 </a>
             </li>
             <li>
-                <a href="mailto:email@example.com">
+                <a href="mailto:contact@rdstudiodesign.com">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
-                    <span class="contact-text"><span class="label">Email</span><span class="value">email@example.com</span></span>
+                    <span class="contact-text"><span class="label">Email</span><span class="value">contact@rdstudiodesign.com</span></span>
                 </a>
             </li>
             <li>
@@ -411,11 +410,11 @@
             if (!/Android/i.test(navigator.userAgent)) return;
             var e = encodeURIComponent;
             var contact = {
-                name: 'Rebecca Franklin',
-                phone: '+00000000000',          /* PLACEHOLDER */
-                email: 'email@example.com',      /* PLACEHOLDER */
+                name: 'Lorem Ipsum',
+                phone: '+00000000000',
+                email: 'contact@rdstudiodesign.com',
                 company: 'RD Studio',
-                job_title: '[Job Title]',        /* PLACEHOLDER */
+                job_title: 'Co-Founder & Lead Designer',
                 notes: 'Marine & Land-Based Design – https://rdstudiodesign.com'
             };
             var extras = Object.keys(contact).map(function (k) {
@@ -423,14 +422,14 @@
             });
             extras.push('i.phone_type=2');  /* komórkowy */
             extras.push('i.email_type=2');  /* służbowy */
-            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/rebecca/contact.vcf'));
+            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/a/contact.vcf'));
             document.getElementById('saveContact').href =
                 'intent:#Intent;action=android.intent.action.INSERT;' +
                 'type=vnd.android.cursor.dir/raw_contact;' + extras.join(';') + ';end';
         })();
 
         (function () {
-            var CARD_URL = 'https://rdstudiodesign.com/card/rebecca/';
+            var CARD_URL = 'https://rdstudiodesign.com/card/a/';
             var btn = document.getElementById('shareBtn');
             var label = btn.textContent;
             var timer;
@@ -465,8 +464,8 @@
             btn.addEventListener('click', function () {
                 if (navigator.share) {
                     navigator.share({
-                        title: 'Rebecca Franklin | RD Studio',
-                        text: 'Rebecca Franklin, RD Studio',
+                        title: 'Lorem Ipsum | RD Studio',
+                        text: 'Lorem Ipsum, Co-Founder & Lead Designer, RD Studio',
                         url: CARD_URL
                     }).catch(function (err) {
                         if (err && err.name !== 'AbortError') copyLink();
