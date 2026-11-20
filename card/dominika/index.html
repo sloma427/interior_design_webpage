@@ -362,8 +362,8 @@
         </a>
 
         <!-- DANE DO EDYCJI – zmień też w contact.vcf -->
-        <h1 class="name">Dominika Sloma</h1>
-        <p class="role">Founder &amp; Lead Designer</p>
+        <h1 class="name">Dominika Słoma</h1>
+        <p class="role">Co-Founder &amp; Lead Designer</p>
         <hr class="gold-line">
 
         <ul class="contacts">
@@ -409,11 +409,11 @@
             if (!/Android/i.test(navigator.userAgent)) return;
             var e = encodeURIComponent;
             var contact = {
-                name: 'Dominika Sloma',
+                name: 'Dominika Słoma',
                 phone: '+48668840966',
                 email: 'contact@rdstudiodesign.com',
                 company: 'RD Studio',
-                job_title: 'Founder & Lead Designer',
+                job_title: 'Co-Founder & Lead Designer',
                 notes: 'Marine & Land Design – https://rdstudiodesign.com'
             };
             var extras = Object.keys(contact).map(function (k) {
@@ -463,8 +463,8 @@
             btn.addEventListener('click', function () {
                 if (navigator.share) {
                     navigator.share({
-                        title: 'Dominika Sloma | RD Studio',
-                        text: 'Dominika Sloma – Founder & Lead Designer, RD Studio',
+                        title: 'Dominika Słoma | RD Studio',
+                        text: 'Dominika Słoma, Co-Founder & Lead Designer, RD Studio',
                         url: CARD_URL
                     }).catch(function (err) {
                         if (err && err.name !== 'AbortError') copyLink();
