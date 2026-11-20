@@ -6,10 +6,10 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#738694">
     <title>Dominika Słoma | RD Studio</title>
-    <link rel="icon" href="../favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="../index_files/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../index_files/icon-192.png">
-    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="icon" href="../../favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../index_files/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../index_files/icon-192.png">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap">
@@ -124,8 +124,8 @@
             height: 110px;
             width: calc(110px * 2606 / 2314); /* proporcje viewBox logo-clean.svg */
             background-color: var(--color-brown-dark);
-            -webkit-mask: url("../index_files/logo-clean.svg") center / contain no-repeat;
-            mask: url("../index_files/logo-clean.svg") center / contain no-repeat;
+            -webkit-mask: url("../../index_files/logo-clean.svg") center / contain no-repeat;
+            mask: url("../../index_files/logo-clean.svg") center / contain no-repeat;
         }
 
         /* --- NAGŁÓWEK --- */
@@ -279,7 +279,7 @@
 </head>
 <body>
     <div class="fixed-bg" aria-hidden="true">
-        <img src="../index_files/background.jpg" alt="" fetchpriority="high">
+        <img src="../../index_files/background.jpg" alt="" fetchpriority="high">
         <div class="fixed-bg-overlay"></div>
     </div>
 
@@ -346,14 +346,14 @@
             });
             extras.push('i.phone_type=2');  /* komórkowy */
             extras.push('i.email_type=2');  /* służbowy */
-            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/contact.vcf'));
+            extras.push('S.browser_fallback_url=' + e('https://rdstudiodesign.com/card/dominika/contact.vcf'));
             document.getElementById('saveContact').href =
                 'intent:#Intent;action=android.intent.action.INSERT;' +
                 'type=vnd.android.cursor.dir/raw_contact;' + extras.join(';') + ';end';
         })();
 
         (function () {
-            var CARD_URL = 'https://rdstudiodesign.com/card/';
+            var CARD_URL = 'https://rdstudiodesign.com/card/dominika/';
             var btn = document.getElementById('shareBtn');
             var label = btn.textContent;
             var timer;
