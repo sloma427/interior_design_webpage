@@ -327,10 +327,17 @@
             flex-shrink: 0;
         }
 
-        .nav-links li:hover a span.nav-title {
+        /* Najechanie na którąkolwiek kropkę pokazuje wszystkie etykiety (kaskadowo od góry) */
+        .nav-links:hover a span.nav-title {
             opacity: 1;
             transform: translateX(0);
         }
+        .nav-links:hover li:nth-child(2) a span.nav-title { transition-delay: 0.03s; }
+        .nav-links:hover li:nth-child(3) a span.nav-title { transition-delay: 0.06s; }
+        .nav-links:hover li:nth-child(4) a span.nav-title { transition-delay: 0.09s; }
+        .nav-links:hover li:nth-child(5) a span.nav-title { transition-delay: 0.12s; }
+        .nav-links:hover li:nth-child(6) a span.nav-title { transition-delay: 0.15s; }
+        .nav-links:hover li:nth-child(7) a span.nav-title { transition-delay: 0.18s; }
         /* Podświetlenie kropki pod kursorem */
         .nav-links li:hover a::after {
             background-color: var(--color-champagne-gold);
