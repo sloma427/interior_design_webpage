@@ -272,6 +272,77 @@
             letter-spacing: 4px;
         }
 
+        /* --- KOD QR DO POKAZANIA KLIENTOWI --- */
+        .text-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            margin-top: 18px;
+        }
+        .text-actions .share-btn { margin-top: 0; }
+        .dot-sep { font-size: 11px; opacity: 0.5; }
+        .qr-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            background: rgba(244, 242, 237, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            cursor: pointer;
+        }
+        .qr-overlay.open { opacity: 1; visibility: visible; }
+        .qr-sheet {
+            background: #ffffff;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--panel-radius);
+            box-shadow: 0 20px 50px rgba(90, 77, 59, 0.18);
+            padding: 22px 22px 20px;
+            text-align: center;
+            transform: translateY(16px) scale(0.97);
+            transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .qr-overlay.open .qr-sheet { transform: none; }
+        .qr-sheet img {
+            display: block;
+            width: min(76vw, 320px);
+            height: auto;
+            aspect-ratio: 1;
+        }
+        .qr-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin: 10px 0 4px;
+        }
+        .qr-hint {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+        .qr-close {
+            margin-top: 22px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--color-champagne-gold);
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--color-brown-dark);
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
         @media (max-width: 480px) {
             .card { padding: 32px 22px 26px; }
         }
@@ -320,7 +391,11 @@
         <a href="contact.vcf" class="btn btn-metal" id="saveContact">Save Contact</a>
         <a href="https://rdstudiodesign.com" class="btn btn-glass">Visit Website</a>
 
-        <button type="button" class="share-btn" id="shareBtn">Share this card</button>
+        <div class="text-actions">
+            <button type="button" class="share-btn" id="qrBtn">Show QR Code</button>
+            <span class="dot-sep" aria-hidden="true">·</span>
+            <button type="button" class="share-btn" id="shareBtn">Share this card</button>
+        </div>
 
         <p class="motto">Marine &amp; Land Design</p>
     </main>
@@ -397,6 +472,44 @@
                 } else {
                     copyLink();
                 }
+            });
+        })();
+    </script>
+
+    <!-- Kod QR tej wizytówki: pokazujesz klientowi, on skanuje i otwiera tę stronę -->
+    <div class="qr-overlay" id="qrOverlay" role="dialog" aria-modal="true" aria-label="QR code for this business card">
+        <div class="qr-sheet">
+            <img src="qr-card.svg" alt="QR code linking to this business card" width="320" height="320">
+            <p class="qr-name"></p>
+            <p class="qr-hint">Scan to open my business card</p>
+        </div>
+        <button type="button" class="qr-close" aria-label="Close">&times;</button>
+    </div>
+
+    <script>
+        (function () {
+            var overlay = document.getElementById('qrOverlay');
+            var opener = document.getElementById('qrBtn');
+            var wakeLock = null;
+            overlay.querySelector('.qr-name').textContent = document.querySelector('.name').textContent;
+
+            function open() {
+                overlay.classList.add('open');
+                overlay.querySelector('.qr-close').focus();
+                // nie gaś ekranu, gdy klient skanuje kod
+                if (navigator.wakeLock) {
+                    navigator.wakeLock.request('screen').then(function (l) { wakeLock = l; }).catch(function () {});
+                }
+            }
+            function close() {
+                overlay.classList.remove('open');
+                if (wakeLock) { wakeLock.release().catch(function () {}); wakeLock = null; }
+                opener.focus();
+            }
+            opener.addEventListener('click', open);
+            overlay.addEventListener('click', close);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) close();
             });
         })();
     </script>
