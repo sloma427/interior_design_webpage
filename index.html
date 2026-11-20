@@ -3,7 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RD Studio | Yacht &amp; Interior Design</title>
+    <title>RD Studio | Marine &amp; Land Design</title>
+    <meta name="description" content="Design beyond what you see. RD Studio is a team of designers and architects creating interiors for the marine industry, luxury residences and beyond.">
     <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="./index_files/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="./index_files/icon-192.png">
@@ -236,6 +237,7 @@
         h1, h2, .editorial-header {
             font-family: 'Playfair Display', serif;
             font-weight: 400;
+            line-height: 1.2;
             margin-bottom: 20px;
             color: var(--color-brown-dark);
         }
@@ -383,6 +385,34 @@
         .hero p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 35px; max-width: 85%; font-weight: 400; }
 
         .page-segment { padding: 80px 0; scroll-margin-top: 40px; }
+
+        /* Numeracja rozdziałów jak w broszurze: "01 —" */
+        .section-kicker {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--color-champagne-gold);
+            margin-bottom: 14px;
+        }
+        /* Wyróżnione zdania (kursywa) */
+        .page-segment .lead-line, .page-segment .accent-line {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: var(--color-brown-dark);
+        }
+        .page-segment .lead-line { margin: -5px 0 20px; }
+        .page-segment .accent-line { margin: 6px 0 0; }
+        .hero .lead-line { font-size: 1.45rem; margin: 0 0 14px; }
+        /* Panel z samym tekstem (What is good design?, Design & AI) */
+        .text-panel { max-width: 860px; margin: 0 auto; }
+        .text-panel h2 { margin-top: 0; font-size: 3rem; }
+        .text-panel p { font-size: 1.05rem; line-height: 1.8; font-weight: 400; }
+        .philosophy + .text-panel { margin-top: var(--grid-gap); }
+        .services-note { max-width: 640px; margin: -40px auto 0; text-align: center; font-size: 1rem; line-height: 1.7; }
         .philosophy { text-align: left; display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--grid-gap); align-items: center;}
         .philosophy-text h2 { font-size: 3rem; margin-top: 0; }
         .philosophy-text p { font-size: 1.05rem; color: var(--text-light); line-height: 1.8; font-weight: 400; }
@@ -485,9 +515,10 @@
 
         .designer-signature { font-family: 'Great Vibes', cursive; font-size: 3rem; color: var(--color-champagne-gold); margin-top: 30px; opacity: 0.95; }
 
-        .final-call { max-width: 900px; margin: 120px auto 60px; text-align: center; }
+        .final-call { max-width: 900px; margin: 0 auto 60px; text-align: center; }
         .final-call h2 { font-size: 4rem; letter-spacing: -1px; margin-bottom: 10px; }
-        .final-call p { color: var(--text-light); margin-bottom: 60px; font-size: 1.15rem; font-weight: 400; }
+        .final-call p { color: var(--text-light); margin-bottom: 20px; font-size: 1.15rem; font-weight: 400; }
+        .final-call p.accent-line { margin: 0 0 50px; }
 
         /* Formularz dopasowany do jasnej kolorystyki */
         .contact-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
@@ -719,7 +750,8 @@
 
             .glass-panel { padding: 30px 20px; border-radius: 18px; }
             .hero h1 { font-size: 2.2rem; }
-            .philosophy-text h2, .services-header h2, .about-text h2, .timeline-header h2 { font-size: 2.2rem; }
+            .philosophy-text h2, .services-header h2, .about-text h2, .timeline-header h2, .text-panel h2 { font-size: 2.2rem; }
+            .page-segment .lead-line, .page-segment .accent-line { font-size: 1.15rem; }
             .final-call h2 { font-size: 2.5rem; }
         }
     </style>
@@ -740,7 +772,7 @@
                     <img src="./index_files/logo-clean.svg" alt="RD Studio Logo" class="loader-logo-img">
                 </div>
             </div>
-            <div class="loader-motto">Yacht &amp; Interior Design</div>
+            <div class="loader-motto">Marine &amp; Land Design</div>
         </div>
     </div>
 
@@ -757,9 +789,10 @@
         <ul class="nav-links" id="nav-links">
             <li><a href="#home" class="active-nav"><span class="nav-title">Home</span></a></li>
             <li><a href="#philosophy"><span class="nav-title">Philosophy</span></a></li>
+            <li><a href="#about"><span class="nav-title">Our Story</span></a></li>
             <li><a href="#services"><span class="nav-title">Services</span></a></li>
             <li><a href="#journey"><span class="nav-title">Journey</span></a></li>
-            <li><a href="#about"><span class="nav-title">About Us</span></a></li>
+            <li><a href="#ai"><span class="nav-title">Design &amp; AI</span></a></li>
             <li><a href="#contact"><span class="nav-title">Contact</span></a></li>
         </ul>
     </nav>
@@ -776,28 +809,62 @@
 
         <header id="home" class="hero page-segment">
             <div class="hero-title-box">
-                <h1>Uncompromising Scale. Private Luxury.</h1>
-                <p>Elevating private residences and luxury yachts with an exacting standard of design. We curate bespoke environments for individuals who demand the extraordinary.</p>
-                <a href="#contact" class="btn">Initiate a Project</a>
+                <h1>Design beyond what you see.</h1>
+                <p class="lead-line">Relax. Let us guide you through the design journey.</p>
+                <p>At RD Studio, we believe that every remarkable space begins with a story. And that story begins with you.</p>
+                <a href="#contact" class="btn">Tell Us Your Story</a>
             </div>
         </header>
 
         <section id="philosophy" class="page-segment">
             <div class="glass-panel philosophy">
                 <div class="philosophy-text">
-                    <h2>The Art of Refined Living</h2>
-                    <p>Designing for the world's most luxurious cruise liners instills a rare discipline. It requires mastering the delicate balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. We bring this exact maritime precision to high-end residential estates, ensuring your private sanctuary is as flawlessly functional as it is breathtaking.</p>
+                    <span class="section-kicker">01 —</span>
+                    <h2>Design Is Personal</h2>
+                    <p class="lead-line">At the heart of every project is you.</p>
+                    <p>Your space should reflect the way you live, your personality, your needs and your individuality. No two people are the same, and we believe interiors should celebrate exactly that.</p>
+                    <p>Our role is to understand what makes you unique and translate it into a space that feels naturally yours.</p>
+                    <p>Let us take you on a journey through functionality, comfort and thoughtful design — where every decision has a purpose and every detail has a place.</p>
                 </div>
                 <div class="philosophy-image">
                     <img src="./index_files/timeline1.jpg" alt="Luxury Materials Close-up" loading="lazy" decoding="async">
                 </div>
             </div>
+
+            <div class="glass-panel text-panel">
+                <span class="section-kicker">02 —</span>
+                <h2>What Is Good Design?</h2>
+                <p>To us, good design is much more than the appearance of a room or the functionality of a space.</p>
+                <p>It is the feeling you experience when you enter. The way you move through it. The atmosphere that surrounds you and the memories you take with you when you leave.</p>
+                <p>It is the flow of a space, the touch of a material, the play of light, the scent and the atmosphere. It lives in all those details — some visible, others almost impossible to describe.</p>
+                <p>Sometimes, you cannot quite remember what made a place so special. You simply know that it was remarkable.</p>
+                <p>We have become accustomed to judging interiors through photographs and perfectly framed images. But a truly successful space can never be fully captured on a screen.</p>
+                <p class="accent-line">Wait until you experience it.<br>Welcome to the world of design.</p>
+            </div>
+        </section>
+
+        <section id="about" class="about-combination page-segment">
+            <div class="about-images">
+                <img src="./index_files/founder1.jpg" alt="RD Studio founder" loading="lazy" decoding="async">
+                <img src="./index_files/founder2.jpg" alt="RD Studio founder" loading="lazy" decoding="async">
+            </div>
+            <div class="glass-panel about-text">
+                <span class="section-kicker">03 —</span>
+                <h2>Our Story</h2>
+                <p>We are RD Studio — a team of passionate designers and architects with many years of experience, primarily in the marine industry, as well as luxury residential projects and beyond.</p>
+                <p>Our story began long before RD Studio. We first met while working at our previous company, where we collaborated on numerous projects over the years. Somewhere along the way, we discovered that we had become a perfectly balanced team, sharing the same values, design sensibility and ambitions. Creating RD Studio felt like a natural next step.</p>
+                <p>We believe in a holistic approach to design, where architecture, interiors, materials, objects and atmosphere come together to create one coherent vision.</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+
+                <div class="designer-signature">RD Studio</div>
+            </div>
         </section>
 
         <section id="services" class="page-segment">
             <div class="services-header">
-                <h2>Bespoke Commissions</h2>
-                <p>We accept a select number of private residential and maritime commissions per year, ensuring absolute dedication to realizing your unique vision.</p>
+                <span class="section-kicker">04 —</span>
+                <h2>From the First Sketch to the Final Detail</h2>
+                <p>For us, a project is never simply about completing a room. It is about creating a complete experience, carefully considered down to the smallest detail.</p>
             </div>
 
             <div class="services-grid">
@@ -805,7 +872,7 @@
                     <img src="./index_files/timeline2.jpg" alt="Full Package Design" loading="lazy" decoding="async">
                     <div class="service-card-text">
                         <h3>Full Package Design</h3>
-                        <p>From the initial concept to comprehensive technical drawings and precise material specifications. We manage every design detail.</p>
+                        <p>From exterior concepts and architectural plans to interior layouts, technical details, bespoke furniture and finishing touches — we stay with you through the entire journey.</p>
                     </div>
                 </div>
 
@@ -813,7 +880,7 @@
                     <img src="./index_files/timeline3.jpg" alt="Conceptual Design" loading="lazy" decoding="async">
                     <div class="service-card-text">
                         <h3>Conceptual Design</h3>
-                        <p>Focused on space arrangement, material selection, and overall design conception to provide a strong creative direction for your project.</p>
+                        <p>Architecture, interiors, materials, objects and atmosphere brought together into one coherent vision — a strong creative direction for your space.</p>
                     </div>
                 </div>
 
@@ -821,16 +888,18 @@
                     <img src="./index_files/timeline4.jpg" alt="Design Consultations" loading="lazy" decoding="async">
                     <div class="service-card-text">
                         <h3>Design Consultations</h3>
-                        <p>Dedicated meetings designed to help create a clear design direction or solve specific spatial and aesthetic problems in your project.</p>
+                        <p>Whether you are looking to transform a space or develop a new concept, we help you find a clear direction — where every decision has a purpose.</p>
                     </div>
                 </div>
             </div>
+
+            <p class="services-note">We collaborate with talented makers and creatives on bespoke carpets, artworks, lighting, furniture and decorative objects — because the smallest details can make the biggest difference.</p>
         </section>
 
         <section id="journey" class="timeline-section page-segment">
             <div class="timeline-header">
                 <h2>Our Professional Journey</h2>
-                <p>A legacy of maritime &amp; interior design excellence spanning over three decades.</p>
+                <p>Over the years, our professional journey has taken us from shipyards to private residences — exploring every stage of the creative process.</p>
             </div>
 
             <div class="timeline-wrapper" id="timeline-wrapper">
@@ -969,24 +1038,26 @@
             <button id="toggle-timeline-btn" class="btn" onclick="toggleTimeline()">Expand Journey</button>
         </section>
 
-        <section id="about" class="about-combination page-segment">
-            <div class="about-images">
-                <img src="./index_files/founder1.jpg" alt="Founder One" loading="lazy" decoding="async">
-                <img src="./index_files/founder2.jpg" alt="Founder Two" loading="lazy" decoding="async">
-            </div>
-            <div class="glass-panel about-text">
-                <h2>Mastery of Scale &amp; Detail</h2>
-                <p>With years of collective experience spanning both ultra-luxury maritime and high-end residential interior design, we bring the best of both worlds to every project. Designing for mega-cruises instilled a rare discipline in us—mastering the balance between opulent aesthetics, rigorous space optimization, and highly engineered materials. By merging this technical precision with the warmth and personal touch of residential design, we engineer environments of profound elegance. Whether on land or at sea, we manage the heavy lifting, allowing you to simply enjoy the seamless transformation of your space.</p>
-                <a href="#contact" class="btn">Let's connect</a>
 
-                <div class="designer-signature">RD Studio</div>
+        <section id="ai" class="page-segment">
+            <div class="glass-panel text-panel">
+                <span class="section-kicker">05 —</span>
+                <h2>Design in the Age of AI</h2>
+                <p class="lead-line">We are not afraid of AI. We work with it, hand in hand.</p>
+                <p>But let's make one thing clear: we are the designers. AI is our tool. Just as a pen translates a thought into a sketch, AI allows us to explore, visualise and communicate ideas in new and exciting ways.</p>
+                <p>Our creative process always begins with research, brainstorming, inspiration and hand sketches. Ideas come from our imagination, experience and understanding of the project. AI tools simply help us bring those ideas to life more quickly, explore possibilities and communicate our vision more effectively.</p>
+                <p>You will see AI-generated imagery throughout our website. Every visual, however, is guided by a human creative vision and supported by our design knowledge and expertise.</p>
+                <p>Technology may change the way we work, but it does not replace the imagination, sensitivity and experience behind good design.</p>
+                <p class="accent-line">AI is a tool. Creativity is human.</p>
             </div>
         </section>
 
         <footer id="contact" class="final-call page-segment">
             <div class="glass-panel">
-                <h2>Discuss Your Vision</h2>
-                <p>To explore a potential collaboration, please provide the preliminary details of your property or vessel below. We will respond within 48 hours.</p>
+                <span class="section-kicker">06 —</span>
+                <h2>Let's Create Something Unforgettable</h2>
+                <p>We believe that the best projects happen when ideas, personalities and ambitions come together. Whether you are looking to transform a space, develop a new concept or create something entirely bespoke, we would love to hear your story.</p>
+                <p class="accent-line">Get in touch. Let's make something remarkable.</p>
 
                 <form class="contact-form" action="https://formspree.io/f/meedrwze" method="POST">
                     <div class="form-row">
@@ -1001,7 +1072,7 @@
                         <option value="consultation">Design Consultation</option>
                         <option value="not_sure">Not Sure Yet</option>
                     </select>
-                    <textarea name="project_details" id="input-msg" placeholder="Please outline the scope, location, and anticipated timeline of your project..." required=""></textarea>
+                    <textarea name="project_details" id="input-msg" placeholder="Tell us your story — the space, its location and your timeline..." required=""></textarea>
                     <button type="submit" class="btn">Submit Inquiry</button>
                 </form>
             </div>
